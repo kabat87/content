@@ -1,17 +1,18 @@
 ---
 title: horiz-origin-x
 slug: Web/SVG/Attribute/horiz-origin-x
-tags:
-  - Deprecated
-  - SVG
-  - SVG Attribute
+page-type: svg-attribute
+status:
+  - deprecated
 browser-compat: svg.elements.font.horiz-origin-x
 ---
+
 {{SVGRef}}{{Deprecated_Header}}
 
 The **`horiz-origin-x`** attribute indicates the x-coordinate in the font coordinate system of the origin of a {{Glossary("glyph")}} to be used when drawing horizontally oriented text.
 
-> **Note:** The origin applies to all glyphs in the font.
+> [!NOTE]
+> The origin applies to all glyphs in the font.
 
 You can use this attribute with the following SVG elements:
 
@@ -25,7 +26,7 @@ You can use this attribute with the following SVG elements:
       <th scope="row">Value</th>
       <td>
         <code
-          ><a href="/en-US/docs/Web/SVG/Content_type#Number"
+          ><a href="/en-US/docs/Web/SVG/Content_type#number"
             >&#x3C;number></a
           ></code
         >
@@ -47,24 +48,7 @@ You can use this attribute with the following SVG elements:
 
 ## Specifications
 
-<table class="no-markdown">
-  <thead>
-    <tr>
-      <th scope="col">Specification</th>
-      <th scope="col">Status</th>
-      <th scope="col">Comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        {{SpecName("SVG1.1", "fonts.html#FontElementHorizOriginXAttribute", "horiz-origin-x")}}
-      </td>
-      <td>{{Spec2("SVG1.1")}}</td>
-      <td>Initial definition</td>
-    </tr>
-  </tbody>
-</table>
+{{Specifications}}
 
 ## Browser compatibility
 

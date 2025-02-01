@@ -1,19 +1,18 @@
 ---
 title: stop-opacity
 slug: Web/SVG/Attribute/stop-opacity
-tags:
-  - NeedsExample
-  - SVG
-  - SVG Attribute
-browser-compat: svg.elements.stop.stop-opacity
+page-type: svg-attribute
+browser-compat: svg.global_attributes.stop-opacity
 ---
+
 {{SVGRef}}
 
 The **`stop-opacity`** attribute defines the opacity of a given color gradient stop.
 
 The opacity value used for the gradient calculation is the product of the value of `stop-opacity` and the opacity of the value of the {{SVGAttr("stop-color")}} attribute. For `stop-color` values that don't include explicit opacity information, the opacity is treated as `1`.
 
-> **Note:** As a presentation attribute, `stop-opacity` can be used as a CSS property.
+> [!NOTE]
+> As a presentation attribute, `stop-opacity` can be used as a CSS property.
 
 You can use this attribute with the following SVG elements:
 
@@ -49,33 +48,7 @@ You can use this attribute with the following SVG elements:
 
 ## Specifications
 
-<table class="no-markdown">
-  <thead>
-    <tr>
-      <th scope="col">Specification</th>
-      <th scope="col">Status</th>
-      <th scope="col">Comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        {{SpecName("SVG2", "pservers.html#StopOpacityProperty", "stop-opacity")}}
-      </td>
-      <td>{{Spec2("SVG2")}}</td>
-      <td>
-        Refers to the definition in CSS Colors 3, but allows percentage values.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{SpecName("SVG1.1", "pservers.html#StopOpacityProperty", "stop-opacity")}}
-      </td>
-      <td>{{Spec2("SVG1.1")}}</td>
-      <td>Initial definition</td>
-    </tr>
-  </tbody>
-</table>
+{{Specifications}}
 
 ## Browser compatibility
 
@@ -83,4 +56,8 @@ You can use this attribute with the following SVG elements:
 
 ## See also
 
+- CSS {{cssxref("stop-opacity")}} property
 - {{SVGAttr("stop-color")}}
+- {{SVGAttr("opacity")}}
+- {{SVGAttr("fill-opacity")}}
+- {{SVGAttr("stroke-opacity")}}

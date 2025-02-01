@@ -1,14 +1,11 @@
 ---
-title: 'aria-readonly'
+title: aria-readonly
 slug: Web/Accessibility/ARIA/Attributes/aria-readonly
-tags: 
-  - Accessibility
-  - ARIA
-  - ARIA attribute
-  - ARIA property
-  - aria-readonly
-  - Reference
+page-type: aria-attribute
+spec-urls: https://w3c.github.io/aria/#aria-readonly
 ---
+
+{{AccessibilitySidebar}}
 
 The `aria-readonly` attribute indicates that the element is not editable, but is otherwise operable.
 
@@ -26,9 +23,11 @@ Examples include:
 
 If the non-changeable value shouldn't be able to receive focus, use [`aria-disabled`](/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled) instead.
 
-> **Note:** When using semantic HTML form controls, if you set the `readonly` attribute, you don't need to include `aria-readonly="true"`.
+> [!NOTE]
+> When using semantic HTML form controls, if you set the `readonly` attribute, you don't need to include `aria-readonly="true"`.
 
-> **Note:** The value of `<input type="checkbox">` can not be edited making `readonly` not relevant. However, when creating checkboxes with `role="checkbox"` the `aria-readonly` attribute _is_ supported.
+> [!NOTE]
+> The value of `<input type="checkbox">` can not be edited making `readonly` not relevant. However, when creating checkboxes with `role="checkbox"` the `aria-readonly` attribute _is_ supported.
 
 ## Values
 
@@ -37,12 +36,12 @@ If the non-changeable value shouldn't be able to receive focus, use [`aria-disab
 - `false` (default)
   - : The element is not readonly.
 
-## ARIAMixin API
+## Associated interfaces
 
 - {{domxref("Element.ariaReadOnly")}}
-  - : The  [`ariaReadOnly`](/en-US/docs/Web/API/Element/ariaReadOnly) property, part of the {{domxref("Element")}} interface, reflects the value of the `aria-readonly` attribute.
+  - : The [`ariaReadOnly`](/en-US/docs/Web/API/Element/ariaReadOnly) property, part of the {{domxref("Element")}} interface, reflects the value of the `aria-readonly` attribute.
 - {{domxref("ElementInternals.ariaReadOnly")}}
-  - : The  [`ariaReadOnly`](/en-US/docs/Web/API/ElementInternals/ariaReadOnly) property, part of the {{domxref("ElementInternals")}} interface, reflects the value of the `aria-readonly` attribute.
+  - : The [`ariaReadOnly`](/en-US/docs/Web/API/ElementInternals/ariaReadOnly) property, part of the {{domxref("ElementInternals")}} interface, reflects the value of the `aria-readonly` attribute.
 
 ## Associated roles
 
@@ -68,16 +67,9 @@ Inherited into roles:
 
 ## Specifications
 
-| Specification | Status |
-| ------------- | ------  |
-| {{SpecName("ARIA","#aria-readonly","ARIA: aria-readonly Attribute")}}  | {{Spec2('ARIA')}} |
+{{Specifications}}
 
-## See Also
+## See also
 
 - [HTML `readonly` attribute](/en-US/docs/Web/HTML/Attributes/readonly)
 - [`aria-disabled`](/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled)
-
-<section id="Quick_links">
-<strong><a href="/en-US/docs/Web/Accessibility/ARIA/Attributes">WAI-ARIA states and properties</a></strong>
-{{ListSubpagesForSidebar("/en-US/docs/Web/Accessibility/aria/Attributes")}}
-</section>

@@ -1,16 +1,12 @@
 ---
-title: Navigator.webdriver
+title: "Navigator: webdriver property"
+short-title: webdriver
 slug: Web/API/Navigator/webdriver
-tags:
-  - API
-  - Navigator
-  - Property
-  - Reference
-  - WebDriver
-  - weblock
+page-type: web-api-instance-property
 browser-compat: api.Navigator.webdriver
 ---
-{{SeeCompatTable}}{{APIRef("WebDriver")}}
+
+{{APIRef("WebDriver")}}
 
 The **`webdriver`** read-only property
 of the {{domxref("navigator")}} interface indicates whether the user agent is
@@ -23,19 +19,13 @@ alternate code paths can be triggered during automation.
 The `navigator.webdriver` property is true when in:
 
 - Chrome
-  - : The `--enable-automation` or the `--headless` flag or the
-    `--remote-debugging-port` is used.
+  - : The `--enable-automation` or `--headless` flag is used, or the
+    `--remote-debugging-port` flag specifying port 0 is used.
 - Firefox
   - : The `marionette.enabled` preference or `--marionette` flag is
     passed.
 
-## Syntax
-
-```js
-var isAutomated = navigator.webdriver
-```
-
-### Value
+## Value
 
 A {{JSxRef("Boolean")}}
 
