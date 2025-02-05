@@ -1,11 +1,15 @@
 ---
-title: ':current'
+title: :current
 slug: Web/CSS/:current
-browser-compat: css.selectors.current
+page-type: css-pseudo-class
+status:
+  - experimental
+spec-urls: https://drafts.csswg.org/selectors/#the-current-pseudo
 ---
-{{CSSRef}}
 
-The **`:current`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS/Pseudo-classes) selector is a time-dimensional pseudo-class that represents the element, or an ancestor of the element, that is currently being displayed. For example in a video with captions which are being displayed by [WebVTT](/en-US/docs/Web/API/WebVTT_API).
+{{CSSRef}}{{SeeCompatTable}}
+
+The **`:current`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS/Pseudo-classes) selector is a time-dimensional pseudo-class that represents an element or the ancestor of an element that is currently being displayed. For example, this pseudo-class can be used to represent a video that is being displayed with captions by [WebVTT](/en-US/docs/Web/API/WebVTT_API).
 
 ```css
 :current(p, span) {
@@ -15,7 +19,15 @@ The **`:current`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS
 
 ## Syntax
 
-{{csssyntax}}
+```css-nolint
+:current {
+  /* ... */
+}
+
+:current(<compound-selector-list>) {
+  /* ... */
+}
+```
 
 ## Examples
 
@@ -33,13 +45,18 @@ The **`:current`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS
 <video controls preload="metadata">
   <source src="video.mp4" type="video/mp4" />
   <source src="video.webm" type="video/webm" />
-  <track label="English" kind="subtitles" srclang="en" src="subtitles.vtt" default>
+  <track
+    label="English"
+    kind="subtitles"
+    srclang="en"
+    src="subtitles.vtt"
+    default />
 </video>
 ```
 
 ### WebVTT
 
-```
+```plain
 WEBVTT FILE
 
 1
@@ -61,7 +78,7 @@ This is the third caption
 
 ## Browser compatibility
 
-{{Compat}}
+There is no browser implementing this feature.
 
 ## See also
 

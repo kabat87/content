@@ -1,18 +1,13 @@
 ---
 title: Copy sign
 slug: WebAssembly/Reference/Numeric/Copy_sign
-tags:
-  - WebAssembly
-  - wasm
-  - Reference
-  - Numeric
-  - Something
+page-type: webassembly-instruction
+sidebar: webassemblysidebar
 ---
-{{WebAssemblySidebar}}
 
 The **`copysign`** instructions, are used to copy just the sign bit from one number to another.
 
-{{EmbedInteractiveExample("pages/wat/copysign.html")}}
+{{EmbedInteractiveExample("pages/wat/copysign.html", "tabbed-taller")}}
 
 ## Syntax
 

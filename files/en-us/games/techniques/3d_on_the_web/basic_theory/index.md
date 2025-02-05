@@ -1,19 +1,9 @@
 ---
 title: Explaining basic 3D theory
 slug: Games/Techniques/3D_on_the_web/Basic_theory
-tags:
-  - 3D
-  - Coordinates
-  - Textures
-  - basics
-  - fragment
-  - lighting
-  - primitives
-  - rendering
-  - theory
-  - vertex
-  - vertices
+page-type: guide
 ---
+
 {{GamesSidebar}}
 
 This article explains all of the basic theory that's useful to know when you are getting started working with 3D.
@@ -65,7 +55,7 @@ There are four stages to this processing: the first one involves arranging the o
 
 ![Camera](mdn-games-3d-camera.png)
 
-**Projection transformation** (also called perspective transformation) then defines the camera settings. It sets up what can be seen by the camera — the configuration includes _field of view_, _aspect ratio_ and optional _near_ and _far planes_. read the [Camera paragraph](/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js#camera) in the Three.js article to learn about those.
+**Projection transformation** (also called perspective transformation) then defines the camera settings. It sets up what can be seen by the camera — the configuration includes _field of view_, _aspect ratio_ and optional _near_ and _far planes_. Read the [Camera paragraph](/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js#camera) in the Three.js article to learn about those.
 
 ![Camera settings](mdn-games-3d-camera-settings.png)
 
@@ -96,7 +86,7 @@ Texture wrapping allows us to repeat the 2D image around the 3D object. Texture 
 The colors we see on the screen is a result of the light source interacting with the surface colors of the object's material. Light might be absorbed or reflected. The standard **Phong Lighting Model** implemented in WebGL has four basic types of lighting:
 
 - **Diffuse**: A distant directional light, like the sun.
-- **Specular**: A point of light, just like a light bulb in a room or a flash light.
+- **Specular**: A point of light, just like a light bulb in a room or a flashlight.
 - **Ambient**: The constant light applied to everything on the scene.
 - **Emissive**: The light emitted directly by the object.
 
@@ -106,7 +96,7 @@ During the output manipulation stage all the fragments of the primitives from th
 
 ![Output merging](mdn-games-3d-output-merging.png)
 
-During output merging some processing is also applied to ignore information that is not needed — for example the parameters of objects that are outside of the screen or behind other objects, and thus not visible, are not calculated.
+During output merging some processing is also applied to ignore information that is not needed — for example the parameters of objects that are outside the screen or behind other objects, and thus not visible, are not calculated.
 
 ## Conclusion
 

@@ -1,22 +1,15 @@
 ---
 title: webRequest.CertificateInfo
 slug: Mozilla/Add-ons/WebExtensions/API/webRequest/CertificateInfo
-tags:
-  - API
-  - Add-ons
-  - CertificateInfo
-  - Extensions
-  - Reference
-  - Type
-  - WebExtensions
-  - webRequest
+page-type: webextension-api-type
 browser-compat: webextensions.api.webRequest.CertificateInfo
 ---
-{{AddonSidebar()}}
+
+{{AddonSidebar}}
 
 An object describing a single [X.509 certificate](https://datatracker.ietf.org/doc/html/rfc5280).
 
-The {{WebExtAPIRef("webRequest.SecurityInfo", "SecurityInfo")}} object returned from the {{WebExtAPIRef("webRequest.getSecurityInfo()")}} API includes a `certificates` property which is an array of these objects.
+The {{WebExtAPIRef("webRequest.SecurityInfo", "SecurityInfo")}} object returned from the {{WebExtAPIRef("webRequest.getSecurityInfo()")}} API includes a `certificates` property which is an array of these objects.
 
 ## Type
 

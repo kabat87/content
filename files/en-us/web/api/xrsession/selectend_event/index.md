@@ -1,39 +1,27 @@
 ---
-title: 'XRSession: selectend event'
+title: "XRSession: selectend event"
+short-title: selectend
 slug: Web/API/XRSession/selectend_event
-tags:
-  - API
-  - AR
-  - Event
-  - Input Sources
-  - Inputs
-  - Mixed
-  - Reality
-  - Reference
-  - VR
-  - Virtual
-  - WebXR
-  - WebXR API
-  - WebXR Device API
-  - XR
-  - XRSession
-  - augmented
-  - controllers
-  - selectend
+page-type: web-api-event
+status:
+  - experimental
 browser-compat: api.XRSession.selectend_event
 ---
-{{APIRef("WebXR Device API")}}
 
-The WebXR event **`selectend`** is sent to an {{domxref("XRSession")}} when one of its input sources ends its [primary action](/en-US/docs/Web/API/WebXR_Device_API/Inputs#primary_actions) or when an input source that's in the process of handling an ongoing primary action is disconnected without successfully completing the action.
+{{APIRef("WebXR Device API")}}{{SeeCompatTable}}{{SecureContext_Header}}
+
+The WebXR event **`selectend`** is sent to an {{domxref("XRSession")}} when one of its input sources ends its [primary action](/en-US/docs/Web/API/WebXR_Device_API/Inputs#primary_action) or when an input source that's in the process of handling an ongoing primary action is disconnected without successfully completing the action.
+
+The {{domxref("Element.beforexrselect_event", "beforexrselect")}} is fired before this event and can prevent this event from being raised.
 
 ## Syntax
 
 Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
 
 ```js
-addEventListener('selectend', event => { })
+addEventListener("selectend", (event) => {});
 
-onselectend = event => { }
+onselectend = (event) => {};
 ```
 
 ## Event type
@@ -49,7 +37,7 @@ _In addition to the properties listed below, properties from the parent interfac
 - {{domxref("XRInputSourceEvent.frame", "frame")}} {{ReadOnlyInline}}
   - : An {{domxref("XRFrame")}} object providing the needed information about the event frame during which the event occurred. This frame may have been rendered in the past rather than being a current frame. Because this is an _event_ frame, not an _animation_ frame, you cannot call the {{domxref("XRFrame")}} method {{domxref("XRFrame.getViewerPose", "getViewerPose()")}} on it; instead, use {{domxref("XRFrame.getPose", "getPose()")}}.
 - {{domxref("XRInputSourceEvent.inputSource", "inputSource")}} {{ReadOnlyInline}}
-  - : An {{domxref("XRInputSource")}} object indicating which input source generated the input event.
+  - : An {{domxref("XRInputSource")}} object indicating which input source generated the input event.
 
 ## Description
 
@@ -80,3 +68,4 @@ See the [`selectstart`](/en-US/docs/Web/API/XRSession/selectstart_event#examples
 ## See also
 
 - {{domxref("XRSession.select_event", "select")}} and {{domxref("XRSession.selectstart_event", "selectstart")}}
+- {{domxref("Element.beforexrselect_event", "beforexrselect")}}

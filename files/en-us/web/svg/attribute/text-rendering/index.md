@@ -1,16 +1,16 @@
 ---
 title: text-rendering
 slug: Web/SVG/Attribute/text-rendering
-tags:
-  - SVG
-  - SVG Attribute
-browser-compat: svg.attributes.presentation.text-rendering
+page-type: svg-attribute
+browser-compat: svg.global_attributes.text-rendering
 ---
+
 {{SVGRef}}
 
 The **`text-rendering`** attribute provides hints to the renderer about what tradeoffs to make when rendering text.
 
-> **Note:** As a presentation attribute, `text-rendering` can be used as a CSS property. See the {{cssxref("text-rendering", "CSS text-rendering")}} property for more information.
+> [!NOTE]
+> As a presentation attribute, `text-rendering` can be used as a CSS property. See the CSS {{cssxref("text-rendering")}} property for more information.
 
 You can use this attribute with the following SVG elements:
 
@@ -19,7 +19,9 @@ You can use this attribute with the following SVG elements:
 ## Example
 
 ```css hidden
-html, body, svg {
+html,
+body,
+svg {
   height: 100%;
 }
 ```
@@ -66,31 +68,7 @@ html, body, svg {
 
 ## Specifications
 
-<table class="no-markdown">
-  <thead>
-    <tr>
-      <th scope="col">Specification</th>
-      <th scope="col">Status</th>
-      <th scope="col">Comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        {{SpecName("SVG2", "painting.html#TextRenderingProperty", "text-rendering")}}
-      </td>
-      <td>{{Spec2("SVG2")}}</td>
-      <td>No change</td>
-    </tr>
-    <tr>
-      <td>
-        {{SpecName("SVG1.1", "painting.html#TextRenderingProperty", "text-rendering")}}
-      </td>
-      <td>{{Spec2("SVG1.1")}}</td>
-      <td>Initial definition</td>
-    </tr>
-  </tbody>
-</table>
+{{Specifications}}
 
 ## Browser compatibility
 
@@ -98,4 +76,4 @@ html, body, svg {
 
 ## See also
 
-- {{cssxref("text-rendering", "CSS text-rendering")}}
+- CSS {{cssxref("text-rendering")}} property

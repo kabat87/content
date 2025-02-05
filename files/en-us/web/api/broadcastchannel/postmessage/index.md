@@ -1,30 +1,23 @@
 ---
-title: BroadcastChannel.postMessage()
+title: "BroadcastChannel: postMessage() method"
+short-title: postMessage()
 slug: Web/API/BroadcastChannel/postMessage
-tags:
-  - API
-  - Broadcast Channel API
-  - BroadcastChannel
-  - Experimental
-  - HTML API
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.BroadcastChannel.postMessage
 ---
-{{APIRef("BroadCastChannel API")}}
 
-The **`BroadcastChannel.postMessage()`** sends a message, which
-can be of any kind of {{jsxref("Object")}}, to each listener in any {{glossary("browsing
-  context")}} with the same {{glossary("origin")}}. The message is transmitted as a
-{{event("message")}} event targeted at each `BroadcastChannel` bound to the
-channel.
+{{APIRef("BroadCastChannel API")}} {{AvailableInWorkers}}
 
-{{AvailableInWorkers}}
+The **`postMessage()`** method of the {{domxref("BroadcastChannel")}} interface sends a message,
+which can be of any kind of {{jsxref("Object")}},
+to each listener in any {{glossary("browsing context")}} with the same {{glossary("origin")}}.
+The message is transmitted as a {{domxref("BroadcastChannel/message_event", "message")}} event
+targeted at each {{domxref("BroadcastChannel")}} bound to the channel.
 
 ## Syntax
 
-```js
-channel.postMessage(message);
+```js-nolint
+postMessage(message)
 ```
 
 ### Parameters
@@ -36,6 +29,13 @@ channel.postMessage(message);
 ### Return value
 
 None.
+
+### Exceptions
+
+- `InvalidStateError` {{domxref("DOMException")}}
+  - : Thrown if the {{domxref("BroadcastChannel")}} has already been closed.
+- `DataCloneError` {{domxref("DOMException")}}
+  - : Thrown if any part of the input data is not serializable.
 
 ## Specifications
 

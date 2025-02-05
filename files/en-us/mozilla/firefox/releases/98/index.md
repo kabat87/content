@@ -1,67 +1,53 @@
 ---
 title: Firefox 98 for developers
 slug: Mozilla/Firefox/Releases/98
-tags:
-  - '98'
-  - Firefox
-  - Mozilla
-  - Release
+page-type: firefox-release-notes
 ---
-{{FirefoxSidebar}}{{draft}}
 
-This article provides information about the changes in Firefox 98 that will affect developers. Firefox 98 is the current [Beta version of Firefox](https://www.mozilla.org/en-US/firefox/channel/desktop/#beta), and will ship on [March 8, 2022](https://wiki.mozilla.org/RapidRelease/Calendar#Future_branch_dates).
+{{FirefoxSidebar}}
+
+This article provides information about the changes in Firefox 98 that affect developers. Firefox 98 was released on March 8, 2022.
 
 ## Changes for web developers
 
-### Developer Tools
-
 ### HTML
 
-#### Removals
+- The HTML {{HTMLElement("dialog")}} element is now available by default. This element and its associated [DOM APIs](/en-US/docs/Web/API/Document_Object_Model) provide support for HTML-based modal dialog boxes ([Firefox bug 1733536](https://bugzil.la/1733536)).
 
 ### CSS
 
-#### Removals
+- The {{cssxref("hyphenate-character")}} property sets a string that is used instead of a hyphen character (`-`) at the end of a hyphenation line break ([Firefox bug 1751024](https://bugzil.la/1751024)).
 
 ### JavaScript
 
-#### Removals
-
-### HTTP
-
-#### Removals
-
-### Security
-
-#### Removals
+No notable changes
 
 ### APIs
 
+- {{domxref("navigator.registerProtocolHandler()")}} can now register protocol handlers for the `ftp`, `sftp`, and `ftps` schemes ([Firefox bug 1705202](https://bugzil.la/1705202)).
+
 #### DOM
 
-- The properties `colorSpaceConversion`, `resizeWidth` and `resizeHeight` can be passed to the method {{domxref("createImageBitmap()")}} using the `options` object ({{bug(1748868)}} and {{bug(1733559)}}).
-
-#### Media, WebRTC, and Web Audio
+- {{domxref("HTMLElement.outerText")}} is now supported ([Firefox bug 1709790](https://bugzil.la/1709790)).
+- The properties `colorSpaceConversion`, `resizeWidth` and `resizeHeight` can be passed to the method {{domxref("Window.createImageBitmap()")}} and {{domxref("WorkerGlobalScope.createImageBitmap()")}} using the `options` object ([Firefox bug 1748868](https://bugzil.la/1748868) and [Firefox bug 1733559](https://bugzil.la/1733559)).
+- {{domxref("ElementInternals")}} now has new form-associated custom element methods and properties that allow custom elements to interact with a form.
+  These include the {{domxref("ElementInternals.form","form")}}, {{domxref("ElementInternals.labels","labels")}} and {{domxref("ElementInternals.willValidate", "willValidate")}} properties, and the {{domxref("ElementInternals.setFormValue()","setFormValue()")}} method.
+  ([Firefox bug 1556362](https://bugzil.la/1556362), [Firefox bug 1556373](https://bugzil.la/1556373), [Firefox bug 1556365](https://bugzil.la/1556365), [Firefox bug 1556449](https://bugzil.la/1556449)).
 
 #### Removals
 
 - The deprecated [WebVR API](/en-US/docs/Web/API/WebVR_API) is now disabled by default on all builds (previously it was enabled on Windows, macOS, and all nightly/dev builds).
-  It can be re-enabled in `about:config` using by setting `dom.vr.enabled` to `true`. {{bug(1750902)}}.
-
-### WebAssembly
-
-#### Removals
+  It can be re-enabled in `about:config` by setting `dom.vr.enabled` to `true` ([Firefox bug 1750902](https://bugzil.la/1750902)).
 
 ### WebDriver conformance (Marionette)
 
-#### Removals
+- Improved initial page load checks for newly opened tabs ([Firefox bug 1747359](https://bugzil.la/1747359)).
 
 ## Changes for add-on developers
 
-#### Removals
-
-### Other
+- Web extensions using {{WebExtAPIRef("webRequest")}} were started early during Firefox startup. This has changed to only trigger early start-up for extensions using {{WebExtAPIRef("webRequest")}} blocking calls. Non-blocking calls no longer cause the early startup of an extension. ([Firefox bug 1749871](https://bugzil.la/1749871))
+- `cookieStoreId` added to {{WebExtAPIRef("userScripts.register")}}. This enables extensions to register container-specific user scripts ([Firefox bug 1738567](https://bugzil.la/1738567)).
 
 ## Older versions
 
-{{Firefox_for_developers(97)}}
+{{Firefox_for_developers}}

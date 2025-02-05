@@ -1,22 +1,27 @@
 ---
 title: return
 slug: WebAssembly/Reference/Control_flow/return
-tags:
-  - WebAssembly
-  - wasm
-  - Landing page
-  - Reference
-  - Control flow
+page-type: webassembly-instruction
+sidebar: webassemblysidebar
 ---
-{{WebAssemblySidebar}}
 
-**`return`** returns from a function. If there's a value left on the stack, it returns that value; otherwise it returns nothing/void.
+**`return`** returns from a function.
 
-{{EmbedInteractiveExample("pages/wat/return.html")}}
+- If there are no values left on the stack, it returns nothing/void.
+- If there are the same amount of values left on the stack as specified in the function's type signature, it returns those values.
+- If there are more values than the function's return type specifies, then the topmost N values are returned, and the remaining values on the stack are discarded.
+
+{{EmbedInteractiveExample("pages/wat/return.html", "tabbed-taller")}}
 
 ## Syntax
 
 ```wasm
+f32.const 4.3
+return
+```
+
+```wasm
+i32.const 7
 f32.const 4.3
 return
 ```

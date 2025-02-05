@@ -1,18 +1,13 @@
 ---
 title: Min
 slug: WebAssembly/Reference/Numeric/Min
-tags:
-  - WebAssembly
-  - wasm
-  - Reference
-  - Numeric
-  - Something
+page-type: webassembly-instruction
+sidebar: webassemblysidebar
 ---
-{{WebAssemblySidebar}}
 
 The **`min`** instructions, are used for getting the lower of two numbers.
 
-{{EmbedInteractiveExample("pages/wat/min.html")}}
+{{EmbedInteractiveExample("pages/wat/min.html", "tabbed-taller")}}
 
 ## Syntax
 

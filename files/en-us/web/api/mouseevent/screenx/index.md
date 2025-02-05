@@ -1,37 +1,27 @@
 ---
-title: MouseEvent.screenX
+title: "MouseEvent: screenX property"
+short-title: screenX
 slug: Web/API/MouseEvent/screenX
-tags:
-  - API
-  - CSSOM View
-  - DOM Events
-  - MouseEvent
-  - Property
-  - Read-only
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.MouseEvent.screenX
 ---
-{{APIRef("DOM Events")}}
 
-The **`screenX`** read-only property of the {{domxref("MouseEvent")}} interface provides the horizontal coordinate (offset) of the mouse pointer in global (screen) coordinates.
+{{APIRef("UI Events")}}
 
-> **Note:** In a multiscreen environment, screens aligned horizontally will be treated as a single device, and so the range of the `screenX` value will increase to the combined width of the screens.
+The **`screenX`** read-only property of the {{domxref("MouseEvent")}} interface provides the horizontal coordinate (offset) of the mouse pointer in [screen coordinates](/en-US/docs/Web/CSS/CSSOM_view/Coordinate_systems#screen).
 
-## Syntax
+> [!NOTE]
+> In a multiscreen environment, screens aligned horizontally will be treated as a single device, and so the range of the `screenX` value will increase to the combined width of the screens.
 
-```js
-var x = instanceOfMouseEvent.screenX
-```
+## Value
 
-### Return value
-
-A `double` floating point value.
+A `double` floating point value in pixels.
 
 Early versions of the spec defined this as an integer referring to the number of pixels.
 
-## Example
+## Examples
 
-This example displays your mouse's coordinates whenever you trigger the {{Event("mousemove")}} event.
+This example displays your mouse's coordinates whenever you trigger the {{domxref("Element/mousemove_event", "mousemove")}} event.
 
 ### HTML
 
@@ -43,8 +33,8 @@ This example displays your mouse's coordinates whenever you trigger the {{Event(
 ### JavaScript
 
 ```js
-let screenLog = document.querySelector('#screen-log');
-document.addEventListener('mousemove', logKey);
+let screenLog = document.querySelector("#screen-log");
+document.addEventListener("mousemove", logKey);
 
 function logKey(e) {
   screenLog.innerText = `
@@ -55,7 +45,7 @@ function logKey(e) {
 
 ### Result
 
-{{EmbedLiveSample("Example")}}
+{{EmbedLiveSample("Examples")}}
 
 ### Routing an event
 
@@ -82,3 +72,4 @@ function checkClickMap(e) {
 - {{ domxref("MouseEvent") }}
 - {{ domxref("MouseEvent.screenY","screenY") }}
 - {{ domxref("MouseEvent.clientX","clientX") }} / {{ domxref("MouseEvent.clientY", "clientY") }}
+- [Coordinate systems](/en-US/docs/Web/CSS/CSSOM_view/Coordinate_systems)

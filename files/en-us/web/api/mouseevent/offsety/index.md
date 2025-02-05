@@ -1,21 +1,18 @@
 ---
-title: MouseEvent.offsetY
+title: "MouseEvent: offsetY property"
+short-title: offsetY
 slug: Web/API/MouseEvent/offsetY
-tags:
-  - API
-  - MouseEvent
-  - Property
-  - Read-only
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.MouseEvent.offsetY
 ---
-{{APIRef("DOM Events")}}
+
+{{APIRef("UI Events")}}
 
 The **`offsetY`** read-only property of the {{domxref("MouseEvent")}} interface provides the offset in the Y coordinate of the mouse pointer between that event and the padding edge of the target node.
 
 ## Value
 
-A `double` floating point value.
+A `double` floating point value in pixels.
 
 Early versions of the spec defined this as an integer.
 
@@ -30,3 +27,4 @@ Early versions of the spec defined this as an integer.
 ## See also
 
 - {{ domxref("MouseEvent") }}
+- [Coordinate systems](/en-US/docs/Web/CSS/CSSOM_view/Coordinate_systems)
