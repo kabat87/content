@@ -1,19 +1,10 @@
 ---
 title: idle.setDetectionInterval()
 slug: Mozilla/Add-ons/WebExtensions/API/idle/setDetectionInterval
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Idle
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - setDetectionInterval
+page-type: webextension-api-function
 browser-compat: webextensions.api.idle.setDetectionInterval
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Sets the interval, in seconds, used to determine when the system is in an idle state for {{WebExtAPIRef("idle.onStateChanged")}} events. The default interval is 60 seconds.
 
@@ -21,7 +12,7 @@ The detection interval is specific to the extension that calls the method. Chang
 
 ## Syntax
 
-```js
+```js-nolint
 browser.idle.setDetectionInterval(
   intervalInSeconds // integer
 )
@@ -32,10 +23,6 @@ browser.idle.setDetectionInterval(
 - `intervalInSeconds`
   - : `integer`. Threshold, in seconds, used to determine when the system is in an idle state. The minimum value you can supply here is 15.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 ```js
@@ -44,11 +31,15 @@ browser.idle.setDetectionInterval(15);
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.idle`](https://developer.chrome.com/extensions/idle#method-setDetectionInterval) API. This documentation is derived from [`idle.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/idle.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.idle`](https://developer.chrome.com/docs/extensions/reference/api/idle#method-setDetectionInterval) API. This documentation is derived from [`idle.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/idle.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -75,4 +66,4 @@ browser.idle.setDetectionInterval(15);
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

@@ -1,25 +1,18 @@
 ---
 title: onCommand
 slug: Mozilla/Add-ons/WebExtensions/API/commands/onCommand
-tags:
-  - API
-  - Add-ons
-  - Event
-  - Extensions
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - commands
-  - onCommand
+page-type: webextension-api-event
 browser-compat: webextensions.api.commands.onCommand
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}Fired when a command is executed using its associated keyboard shortcut.
 
-The listener is passed the command's name. This matches the name given to the command in its [manifest.json entry](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands).
+Fired when a command is executed using its associated keyboard shortcut.
+
+The event passes the listener the command's name. This name matches the name given to the command in its [manifest.json entry](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands).
 
 ## Syntax
 
-```js
+```js-nolint
 browser.commands.onCommand.addListener(listener)
 browser.commands.onCommand.removeListener(listener)
 browser.commands.onCommand.hasListener(listener)
@@ -27,7 +20,7 @@ browser.commands.onCommand.hasListener(listener)
 
 Events have three functions:
 
-- `addListener(callback)`
+- `addListener(listener)`
   - : Adds a listener to this event.
 - `removeListener(listener)`
   - : Stop listening to this event. The `listener` argument is the listener to remove.
@@ -38,16 +31,12 @@ Events have three functions:
 
 ### Parameters
 
-- `callback`
-
-  - : Function that will be called when a user enters the command's shortcut. The function will be passed the following arguments:
-
+- `listener`
+  - : The function called when a user enters the command's shortcut. The function is passed these arguments:
     - `name`
-      - : `string`. Name of the command. This matches the name given to the command in its [manifest.json entry](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands).
-
-## Browser compatibility
-
-{{Compat}}
+      - : `string`. Name of the command. This name matches the name given to the command in its [manifest.json entry](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands).
+    - `tab`
+      - : {{WebExtAPIRef('tabs.Tab')}}. The tab that was active when the command shortcut was entered.
 
 ## Examples
 
@@ -55,25 +44,30 @@ Given a manifest.json entry like this:
 
 ```json
 "commands": {
-  "toggle-feature": {
+  "duplicate-tab": {
     "suggested_key": {
-      "default": "Ctrl+Shift+Y"
+      "default": "Ctrl+Shift+D"
     },
-    "description": "Send a 'toggle-feature' event"
+    "description": "Duplicate the active tab"
   }
 }
 ```
 
-You could listen for this particular command like this:
+You can listen for this command and use the `tab` passed to the listener to duplicate the active tab, like this:
 
 ```js
-browser.commands.onCommand.addListener(function(command) {
-  if (command == "toggle-feature") {
-    console.log("toggling the feature!");
+browser.commands.onCommand.addListener((command, tab) => {
+  if (command === "duplicate-tab") {
+    browser.tabs.duplicate(tab.id);
   }
 });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.commands`](https://developer.chrome.com/extensions/commands) API.
+## Browser compatibility
+
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.commands`](https://developer.chrome.com/docs/extensions/reference/api/commands) API.

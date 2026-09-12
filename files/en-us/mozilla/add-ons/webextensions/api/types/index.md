@@ -1,15 +1,10 @@
 ---
 title: types
 slug: Mozilla/Add-ons/WebExtensions/API/types
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Reference
-  - Types
-  - WebExtensions
+page-type: webextension-api
+browser-compat: webextensions.api.types
+sidebar: addonsidebar
 ---
-{{AddonSidebar}}
 
 Defines the `BrowserSetting` type, which is used to represent a browser setting.
 
@@ -18,17 +13,17 @@ Defines the `BrowserSetting` type, which is used to represent a browser setting.
 - {{WebExtAPIRef("types.BrowserSetting")}}
   - : Represents a browser setting.
 
-## Browser compatibility
-
 {{WebExtExamples("h2")}}
 
-> **Note:**
->
-> This API is based on Chromium's [`chrome.types`](https://developer.chrome.com/extensions/types) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.types`](https://developer.chrome.com/docs/extensions/reference/api/types) API.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -55,4 +50,4 @@ Defines the `BrowserSetting` type, which is used to represent a browser setting.
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

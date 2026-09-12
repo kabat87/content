@@ -1,19 +1,10 @@
 ---
 title: alarms.clearAll()
 slug: Mozilla/Add-ons/WebExtensions/API/alarms/clearAll
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - alarms
-  - clearAll
+page-type: webextension-api-function
 browser-compat: webextensions.api.alarms.clearAll
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Cancels all active alarms.
 
@@ -21,8 +12,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var clearAlarms = browser.alarms.clearAll()
+```js-nolint
+let clearAlarms = browser.alarms.clearAll()
 ```
 
 ### Parameters
@@ -31,16 +22,19 @@ None.
 
 ### Return value
 
-A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with a boolean. This will be `true` if any alarms were cleared, `false` otherwise. Note that Chrome always passes `true` here.
+A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) fulfilled with a boolean. This is `true` if any alarms were cleared, `false` otherwise.
+
+> [!NOTE]
+> Chrome always passes `true` and Safari `undefined`. The return type is subject to change and may always return `undefined` for all browsers in the future. It is best to not rely on the return type.
 
 ## Examples
 
 ```js
 function onClearedAll(wasCleared) {
-  console.log(wasCleared);  // true/false
+  console.log(wasCleared); // true/false
 }
 
-var clearAlarms = browser.alarms.clearAll();
+let clearAlarms = browser.alarms.clearAll();
 clearAlarms.then(onClearedAll);
 ```
 
@@ -50,6 +44,5 @@ clearAlarms.then(onClearedAll);
 
 {{Compat}}
 
-> **Note:** This API is based on Chromium's [`chrome.alarms`](https://developer.chrome.com/extensions/alarms) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+> [!NOTE]
+> This API is based on Chromium's [`chrome.alarms`](https://developer.chrome.com/docs/extensions/reference/api/alarms) API.

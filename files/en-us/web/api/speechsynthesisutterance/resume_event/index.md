@@ -1,12 +1,11 @@
 ---
-title: 'SpeechSynthesisUtterance: resume event'
+title: "SpeechSynthesisUtterance: resume event"
+short-title: resume
 slug: Web/API/SpeechSynthesisUtterance/resume_event
-tags:
-  - Event
-  - Reference
-  - Web Speech API
+page-type: web-api-event
 browser-compat: api.SpeechSynthesisUtterance.resume_event
 ---
+
 {{APIRef("Web Speech API")}}
 
 The **`resume`** event of the [Web Speech API](/en-US/docs/Web/API/Web_Speech_API) {{domxref("SpeechSynthesisUtterance")}} object is fired when a paused utterance is resumed.
@@ -15,10 +14,10 @@ The **`resume`** event of the [Web Speech API](/en-US/docs/Web/API/Web_Speech_AP
 
 Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
 
-```js
-addEventListener('resume', event => { })
+```js-nolint
+addEventListener("resume", (event) => { })
 
-onresume = event => { }
+onresume = (event) => { }
 ```
 
 ## Event type
@@ -27,35 +26,22 @@ A {{domxref("SpeechSynthesisEvent")}}. Inherits from {{domxref("Event")}}.
 
 {{InheritanceDiagram("SpeechSynthesisEvent")}}
 
-## Event properties
-
-_In addition to the properties listed below, properties from the parent interface, {{domxref("Event")}}, are available._
-
-- {{domxref("SpeechSynthesisEvent.charIndex", "charIndex")}} {{readonlyinline}}
-  - : Returns the index position of the character in the {{domxref("SpeechSynthesisUtterance.text")}} that was being spoken when the event was triggered.
-- {{domxref("SpeechSynthesisEvent.elapsedTime", "elapsedTime")}} {{readonlyinline}}
-  - : Returns the elapsed time in seconds after the {{domxref("SpeechSynthesisUtterance.text")}} started being spoken that the event was triggered at.
-- {{domxref("SpeechSynthesisEvent.name", "name")}} {{readonlyinline}}
-  - : Returns the name associated with certain types of events occurring as the {{domxref("SpeechSynthesisUtterance.text")}} is being spoken: the name of the [SSML](https://www.w3.org/TR/speech-synthesis/#S3.3.2) marker reached in the case of a {{event("mark")}} event, or the type of boundary reached in the case of a {{event("boundary")}} event.
-- {{domxref("SpeechSynthesisEvent.utterance", "utterance")}} {{readonlyinline}}
-  - : Returns the {{domxref("SpeechSynthesisUtterance")}} instance that the event was triggered on.
-
 ## Examples
 
 You can use the `resume` event in an [`addEventListener`](/en-US/docs/Web/API/EventTarget/addEventListener) method:
 
 ```js
-utterThis.addEventListener('resume', function(event) {
-  console.log('Speech resumed after ' + event.elapsedTime + ' seconds.');
+utterThis.addEventListener("resume", (event) => {
+  console.log(`Speech resumed after ${event.elapsedTime} seconds.`);
 });
 ```
 
 Or use the `onresume` event handler property:
 
 ```js
-utterThis.onresume = function(event) {
-  console.log('Speech resumed after ' + event.elapsedTime + ' seconds.');
-}
+utterThis.onresume = (event) => {
+  console.log(`Speech resumed after ${event.elapsedTime} seconds.`);
+};
 ```
 
 ## Specifications

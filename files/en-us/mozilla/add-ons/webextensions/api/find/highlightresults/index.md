@@ -1,18 +1,10 @@
 ---
 title: find.highlightResults()
 slug: Mozilla/Add-ons/WebExtensions/API/find/highlightResults
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Reference
-  - WebExtensions
-  - find
-  - highlightResults
+page-type: webextension-api-function
 browser-compat: webextensions.api.find.highlightResults
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Highlights the results of a previous call to {{WebExtAPIRef("find.find()")}}.
 
@@ -22,7 +14,7 @@ Note that the stored results are global across all extensions, so for example, i
 
 ## Syntax
 
-```js
+```js-nolint
 browser.find.highlightResults(
   options // optional object
 )
@@ -30,10 +22,8 @@ browser.find.highlightResults(
 
 ### Parameters
 
-- `options`{{optional_inline}}
-
+- `options` {{optional_inline}}
   - : `object`. An object specifying additional options. It may take any of the following properties, all optional:
-
     - `tabId`
       - : `integer`. ID of the tab to highlight. Defaults to the active tab.
     - `rangeIndex`
@@ -44,10 +34,6 @@ browser.find.highlightResults(
 ### Return value
 
 None.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -63,3 +49,7 @@ function found(results) {
 
 browser.find.find("banana").then(found);
 ```
+
+## Browser compatibility
+
+{{Compat}}

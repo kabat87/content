@@ -1,12 +1,11 @@
 ---
-title: 'SpeechRecognition: nomatch event'
+title: "SpeechRecognition: nomatch event"
+short-title: nomatch
 slug: Web/API/SpeechRecognition/nomatch_event
-tags:
-  - Event
-  - Reference
-  - Web Speech API
+page-type: web-api-event
 browser-compat: api.SpeechRecognition.nomatch_event
 ---
+
 {{APIRef("Web Speech API")}}
 
 The **`nomatch`** event of the [Web Speech API](/en-US/docs/Web/API/Web_Speech_API) is fired when the speech recognition service returns a final result with no significant recognition.
@@ -17,49 +16,36 @@ This may involve some degree of recognition, which doesn't meet or exceed the {{
 
 Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
 
-```js
-addEventListener('nomatch', event => { })
+```js-nolint
+addEventListener("nomatch", (event) => { })
 
-onnomatch = event => { }
+onnomatch = (event) => { }
 ```
 
 ## Event type
 
-An {{domxref("SpeechRecognitionEvent")}}. Inherits from {{domxref("Event")}}.
+A {{domxref("SpeechRecognitionEvent")}}. Inherits from {{domxref("Event")}}.
 
 {{InheritanceDiagram("SpeechRecognitionEvent")}}
-
-## Event properties
-
-_In addition to the properties listed below, properties from the parent interface, {{domxref("Event")}}, are available._
-
-- {{domxref("SpeechRecognitionEvent.emma")}} {{readonlyinline}}
-  - : Returns an Extensible MultiModal Annotation markup language (EMMA) — XML — representation of the result.
-- {{domxref("SpeechRecognitionEvent.interpretation")}} {{readonlyinline}}
-  - : Returns the semantic meaning of what the user said.
-- {{domxref("SpeechRecognitionEvent.resultIndex")}} {{readonlyinline}}
-  - : Returns the lowest index value result in the {{domxref("SpeechRecognitionResultList")}} "array" that has actually changed.
-- {{domxref("SpeechRecognitionEvent.results")}} {{readonlyinline}}
-  - : Returns a {{domxref("SpeechRecognitionResultList")}} object representing all the speech recognition results for the current session.
 
 ## Examples
 
 You can use the `nomatch` event in an [`addEventListener`](/en-US/docs/Web/API/EventTarget/addEventListener) method:
 
 ```js
-var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+const recognition = new (SpeechRecognition || webkitSpeechRecognition)();
 
-recognition.addEventListener('nomatch', function() {
-  console.log('Speech not recognized');
+recognition.addEventListener("nomatch", () => {
+  console.error("Speech not recognized");
 });
 ```
 
 Or use the `onnomatch` event handler property:
 
 ```js
-recognition.onnomatch = function() {
-  console.log('Speech not recognized');
-}
+recognition.onnomatch = () => {
+  console.error("Speech not recognized");
+};
 ```
 
 ## Specifications

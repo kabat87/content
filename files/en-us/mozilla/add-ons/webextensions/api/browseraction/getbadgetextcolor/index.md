@@ -1,18 +1,10 @@
 ---
 title: browserAction.getBadgeTextColor()
 slug: Mozilla/Add-ons/WebExtensions/API/browserAction/getBadgeTextColor
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Reference
-  - WebExtensions
-  - browserAction
-  - getBadgeTextColor
+page-type: webextension-api-function
 browser-compat: webextensions.api.browserAction.getBadgeTextColor
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Gets the text color for the browser action's badge.
 
@@ -24,7 +16,7 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
+```js-nolint
 browser.browserAction.getBadgeTextColor(
   details // object
 )
@@ -33,12 +25,10 @@ browser.browserAction.getBadgeTextColor(
 ### Parameters
 
 - `details`
-
   - : `object`.
-
-    - `tabId`{{optional_inline}}
+    - `tabId` {{optional_inline}}
       - : `integer`. Specifies the tab to get the badge text color from.
-    - `windowId`{{optional_inline}}
+    - `windowId` {{optional_inline}}
       - : `integer`. Specifies the window from which to get the badge text color.
 
 <!---->
@@ -49,10 +39,6 @@ browser.browserAction.getBadgeTextColor(
 ### Return value
 
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with the retrieved color as a {{WebExtAPIRef('browserAction.ColorArray')}}.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -72,9 +58,15 @@ browser.browserAction.getBadgeTextColor({}).then(onGot, onFailure);
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.browserAction`](https://developer.chrome.com/extensions/browserAction#method-getBadgeBackgroundColor) API. This documentation is derived from [`browser_action.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/browser_action.json) in the Chromium code.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.browserAction`](https://developer.chrome.com/docs/extensions/mv2/reference/browserAction#method-getBadgeBackgroundColor) API. This documentation is derived from [`browser_action.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/browser_action.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -101,4 +93,4 @@ browser.browserAction.getBadgeTextColor({}).then(onGot, onFailure);
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

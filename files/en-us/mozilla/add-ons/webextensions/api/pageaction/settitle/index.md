@@ -1,25 +1,16 @@
 ---
 title: pageAction.setTitle()
 slug: Mozilla/Add-ons/WebExtensions/API/pageAction/setTitle
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - pageAction
-  - setTitle
+page-type: webextension-api-function
 browser-compat: webextensions.api.pageAction.setTitle
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Sets the title of the page action. The title is displayed in a tooltip when the user hovers over the page action.
 
 ## Syntax
 
-```js
+```js-nolint
 browser.pageAction.setTitle(
   details // object
 )
@@ -28,20 +19,13 @@ browser.pageAction.setTitle(
 ### Parameters
 
 - `details`
-
   - : `object`.
-
     - `tabId`
       - : `integer`. The ID of the tab whose title you want to set.
     - `title`
-
       - : `string` or `null`. The tooltip text.
 
         If `null` is passed here, the title is reset to the title that was specified in the [`page_action`](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/page_action) manifest key.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -51,19 +35,23 @@ Whenever a tab is updated, show the page action for that tab, and set its title 
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tabInfo) => {
   browser.pageAction.show(tabId);
   browser.pageAction.setTitle({
-    tabId: tabId,
-    title: "Tab ID: " + tabId
+    tabId,
+    title: `Tab ID: ${tabId}`,
   });
 });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.pageAction`](https://developer.chrome.com/extensions/pageAction#method-setTitle) API. This documentation is derived from [`page_action.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/page_action.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.pageAction`](https://developer.chrome.com/docs/extensions/mv2/reference/pageAction#method-setTitle) API. This documentation is derived from [`page_action.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/page_action.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -90,4 +78,4 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tabInfo) => {
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

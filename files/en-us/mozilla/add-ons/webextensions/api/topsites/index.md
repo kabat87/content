@@ -1,18 +1,10 @@
 ---
 title: topSites
 slug: Mozilla/Add-ons/WebExtensions/API/topSites
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Interface
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - topSites
+page-type: webextension-api
 browser-compat: webextensions.api.topSites
+sidebar: addonsidebar
 ---
-{{AddonSidebar}}
 
 Use the topSites API to get an array containing pages that the user has visited frequently.
 
@@ -30,17 +22,17 @@ To use the topSites API you must have the "topSites" [API permission](/en-US/doc
 - {{WebExtAPIRef("topSites.get()")}}
   - : Gets an array containing all the sites listed in the browser's "New Tab" page. Note that the number of sites returned here is browser-specific, and the particular sites returned will probably be specific to the user, based on their browsing history.
 
+{{WebExtExamples("h2")}}
+
 ## Browser compatibility
 
 {{Compat}}
 
-{{WebExtExamples("h2")}}
+> [!NOTE]
+> This API is based on Chromium's [`chrome.topSites`](https://developer.chrome.com/docs/extensions/reference/api/topSites) API.
 
-> **Note:** This API is based on Chromium's [`chrome.topSites`](https://developer.chrome.com/extensions/topSites) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
-
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -67,4 +59,4 @@ To use the topSites API you must have the "topSites" [API permission](/en-US/doc
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

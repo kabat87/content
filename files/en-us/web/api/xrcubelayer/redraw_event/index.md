@@ -1,18 +1,14 @@
 ---
-title: 'XRCubeLayer: redraw event'
+title: "XRCubeLayer: redraw event"
+short-title: redraw
 slug: Web/API/XRCubeLayer/redraw_event
-tags:
-  - API
-  - Event
-  - Reference
-  - VR
-  - WebXR
-  - WebXR API
-  - WebXR Device API
-  - XR
+page-type: web-api-event
+status:
+  - experimental
 browser-compat: api.XRCubeLayer.redraw_event
 ---
-{{APIRef("WebXR Device API")}}
+
+{{APIRef("WebXR Device API")}}{{SeeCompatTable}}
 
 The `redraw` event is sent to the `XRCubeLayer` object when the underlying resources of the layer are lost or when the XR Compositor can no longer reproject the layer. If this event is sent, authors should redraw the content of the layer in the next XR animation frame.
 
@@ -22,22 +18,15 @@ See also the {{domxref("XRCompositionLayer.needsRedraw")}} property which is als
 
 Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
 
-```js
-addEventListener('redraw', event => { })
+```js-nolint
+addEventListener("redraw", (event) => { })
 
-onredraw = event => { }
+onredraw = (event) => { }
 ```
 
 ## Event type
 
 An {{domxref("XRLayerEvent")}}. Inherits from {{domxref("Event")}}.
-
-## Event properties
-
-_In addition to the properties listed below, properties from the parent interface, {{domxref("Event")}}, are available._
-
-- {{domxref("XRLayerEvent.layer", "layer")}} {{ReadOnlyInline}}
-  - : The {{domxref("XRLayer")}} which generated the event.
 
 ## Examples
 
@@ -46,7 +35,7 @@ _In addition to the properties listed below, properties from the parent interfac
 You can pass `redraw` to {{domxref("EventTarget.addEventListener()", "addEventListener()")}}:
 
 ```js
-cubeLayer.addEventListener("redraw", function(event) {
+cubeLayer.addEventListener("redraw", (event) => {
   // redraw the layer
 });
 ```
@@ -54,9 +43,9 @@ cubeLayer.addEventListener("redraw", function(event) {
 Alternatively, you can use the `onredraw` event handler property to establish a handler for the `redraw` event:
 
 ```js
-cubeLayer.onredraw = function(event) {
- // redraw the layer
-}
+cubeLayer.onredraw = (event) => {
+  // redraw the layer
+};
 ```
 
 ## Specifications

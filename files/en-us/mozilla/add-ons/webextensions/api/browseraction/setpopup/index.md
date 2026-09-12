@@ -1,25 +1,16 @@
 ---
 title: browserAction.setPopup()
 slug: Mozilla/Add-ons/WebExtensions/API/browserAction/setPopup
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - browserAction
-  - setPopup
+page-type: webextension-api-function
 browser-compat: webextensions.api.browserAction.setPopup
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Sets the HTML document that will be opened as a popup when the user clicks on the browser action's icon. Tabs without a specific popup will inherit the global popup, which defaults to the [`default_popup`](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) specified in the manifest.
 
 ## Syntax
 
-```js
+```js-nolint
 browser.browserAction.setPopup(
   details // object
 )
@@ -28,23 +19,19 @@ browser.browserAction.setPopup(
 ### Parameters
 
 - `details`
-
   - : An object with the following properties:
-
-    - `tabId`{{optional_inline}}
+    - `tabId` {{optional_inline}}
       - : `integer`. Sets the popup only for a specific tab. The popup is reset when the user navigates this tab to a new page.
-    - `windowId`{{optional_inline}}
+    - `windowId` {{optional_inline}}
       - : `integer`. Sets the popup only for the specified window.
     - `popup`
-
       - : `string` or `null`. The HTML file to show in a popup, specified as a URL.
 
-        This can point to a file packaged within the extension (for example, created using {{WebExtAPIRef("extension.getURL")}}), or a remote document (e.g. `https://example.org/`).
+        This can point to a file packaged within the extension (for example, created using {{WebExtAPIRef("runtime.getURL")}}), or a remote document (e.g., `https://example.org/`).
 
         If an empty string (`""`) is passed here, the popup is disabled, and the extension will receive {{WebExtAPIRef("browserAction.onClicked")}} events.
 
         If `popup` is `null`:
-
         - If `tabId` is specified, removes the tab-specific popup so that the tab inherits the global popup.
         - If `windowId` is specified, removes the window-specific popup so that the window inherits the global popup.
         - If `tabId` and `windowId` are both omitted, reverts the global popup to the default value.
@@ -54,10 +41,6 @@ browser.browserAction.setPopup(
 - If `windowId` and `tabId` are both supplied, the function fails and the popup is not set.
 - If `windowId` and `tabId` are both omitted, the global popup is set.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 This code adds a pair of context menu items that you can use to switch between two popups. Note that you'll need the "contextMenus" [permission](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions) set in the extension's manifest to create context menu items.
@@ -65,44 +48,54 @@ This code adds a pair of context menu items that you can use to switch between t
 ```js
 function onCreated() {
   if (browser.runtime.lastError) {
-    console.log("error creating item:" + browser.runtime.lastError);
+    console.log("error creating item:", browser.runtime.lastError);
   } else {
     console.log("item created successfully");
   }
 }
 
-browser.contextMenus.create({
-  id: "popup-1",
-  type: "radio",
-  title: "Popup 1",
-  contexts: ["all"],
-  checked: true
-}, onCreated);
+browser.contextMenus.create(
+  {
+    id: "popup-1",
+    type: "radio",
+    title: "Popup 1",
+    contexts: ["all"],
+    checked: true,
+  },
+  onCreated,
+);
 
-browser.contextMenus.create({
-  id: "popup-2",
-  type: "radio",
-  title: "Popup 2",
-  contexts: ["all"],
-  checked: false
-}, onCreated);
+browser.contextMenus.create(
+  {
+    id: "popup-2",
+    type: "radio",
+    title: "Popup 2",
+    contexts: ["all"],
+    checked: false,
+  },
+  onCreated,
+);
 
-browser.contextMenus.onClicked.addListener(function(info, tab) {
-  if (info.menuItemId == "popup-1") {
-    browser.browserAction.setPopup({popup: "/popup/popup1.html"})
-  } else if (info.menuItemId == "popup-2") {
-    browser.browserAction.setPopup({popup: "/popup/popup2.html"})
+browser.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "popup-1") {
+    browser.browserAction.setPopup({ popup: "/popup/popup1.html" });
+  } else if (info.menuItemId === "popup-2") {
+    browser.browserAction.setPopup({ popup: "/popup/popup2.html" });
   }
 });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.browserAction`](https://developer.chrome.com/extensions/browserAction#method-setPopup) API. This documentation is derived from [`browser_action.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/browser_action.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.browserAction`](https://developer.chrome.com/docs/extensions/mv2/reference/browserAction#method-setPopup) API. This documentation is derived from [`browser_action.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/browser_action.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -129,4 +122,4 @@ browser.contextMenus.onClicked.addListener(function(info, tab) {
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

@@ -1,30 +1,29 @@
 ---
 title: tabs.move()
 slug: Mozilla/Add-ons/WebExtensions/API/tabs/move
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - move
-  - tabs
+page-type: webextension-api-function
 browser-compat: webextensions.api.tabs.move
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Moves one or more tabs to a new position in the same window or to a different window.
 
 You can only move tabs to and from windows whose {{WebExtAPIRef('windows.WindowType', 'WindowType')}} is `"normal"`.
 
-This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+When tabs associated with a [split view](/en-US/docs/Mozilla/Add-ons/WebExtensions/Working_with_the_Tabs_API#working_with_tab_split_views) are moved:
+
+- When both tabs in a split are specified and they remain adjacent but their order is changed, the tabs are swapped in the split view.
+- When both tabs in a split view are specified but are separated by one or more tabs, the tabs are moved and the split view removed.
+- When only one of the tabs in a split view is moved:
+  - In Firefox, the other tab is moved to preserve the split view. The tabs are re-ordered if necessary.
+    > [!NOTE]
+    > In Firefox 149 only, when a call moves a tab or tabs in a split view, the tabs in the split view are moved together, but the order of the tabs is unchanged.
+  - In Chrome, moving a tab away from the other tab in the split view removes the split view. (This behavior may change in a future release.) Otherwise, the tabs are re-ordered as necessary.
 
 ## Syntax
 
-```js
-var moving = browser.tabs.move(
+```js-nolint
+let moving = browser.tabs.move(
   tabIds,              // integer or integer array
   moveProperties       // object
 )
@@ -35,13 +34,10 @@ var moving = browser.tabs.move(
 - `tabIds`
   - : `integer` or `array` of `integer`. ID of the {{WebExtAPIRef('tabs.Tab', 'tab')}} to move, or an array of tab IDs.
 - `moveProperties`
-
   - : `object`. An object that specifies where to move the tab(s).
-
-    - `windowId`{{optional_inline}}
+    - `windowId` {{optional_inline}}
       - : `integer`. The ID of the window to which you want to move the tab(s). If you omit this, then each tab in `tabIds` will be moved to `index` in its current window. If you include this, and `tabIds` contains more than one tab, then the first tab in `tabIds` will be moved to `index`, and the other tabs will follow it in the order given in `tabIds`.
     - `index`
-
       - : `integer`. The index position to move the tab to, starting at 0. A value of -1 will place the tab at the end of the window.
 
         If you pass a value less than -1, the function will throw an error.
@@ -50,7 +46,7 @@ var moving = browser.tabs.move(
 
 ### Return value
 
-A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with a `{{WebExtAPIRef('tabs.Tab')}}` object or an `array` of `{{WebExtAPIRef('tabs.Tab')}}` objects, containing details about the moved tabs. If no tabs were moved (for example, because you tried to move an unpinned tab before a pinned tab) this will be an empty array. If any error occurs, the promise will be rejected with an error message.
+A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) fulfilled with a {{WebExtAPIRef('tabs.Tab')}} object or an `array` of {{WebExtAPIRef('tabs.Tab')}} objects, containing details about the moved tabs. If no tabs were moved (for example, because you tried to move an unpinned tab before a pinned tab) this is an empty array. If any error occurs, the promise is rejected with an error message.
 
 ## Examples
 
@@ -66,15 +62,15 @@ function onError(error) {
 }
 
 function firstToLast(windowInfo) {
-  if (windowInfo.tabs.length == 0) {
+  if (windowInfo.tabs.length === 0) {
     return;
   }
-  var moving = browser.tabs.move(windowInfo.tabs[0].id, {index: -1});
+  let moving = browser.tabs.move(windowInfo.tabs[0].id, { index: -1 });
   moving.then(onMoved, onError);
 }
 
-browser.browserAction.onClicked.addListener(function() {
-  var gettingCurrent = browser.windows.getCurrent({populate: true});
+browser.browserAction.onClicked.addListener(() => {
+  let gettingCurrent = browser.windows.getCurrent({ populate: true });
   gettingCurrent.then(firstToLast, onError);
 });
 ```
@@ -91,13 +87,13 @@ function onError(error) {
 }
 
 function moveMoz(tabs) {
-  var mozTabIds = tabs.map(tabInfo => tabInfo.id);
-  var moving = browser.tabs.move(mozTabIds, {index: -1});
+  let mozTabIds = tabs.map((tabInfo) => tabInfo.id);
+  let moving = browser.tabs.move(mozTabIds, { index: -1 });
   moving.then(onMoved, onError);
 }
 
-browser.browserAction.onClicked.addListener(function() {
-  var gettingMozTabs = browser.tabs.query({url:"*://*.mozilla.org/*"});
+browser.browserAction.onClicked.addListener(() => {
+  let gettingMozTabs = browser.tabs.query({ url: "*://*.mozilla.org/*" });
   gettingMozTabs.then(moveMoz, onError);
 });
 ```
@@ -114,14 +110,17 @@ function onError(error) {
 }
 
 function moveMoz(tabs) {
-  var mozTabIds = tabs.map(tabInfo => tabInfo.id);
-  var targetWindow = tabs[0].windowId;
-  var moving = browser.tabs.move(mozTabIds, {windowId: targetWindow, index: 0});
+  let mozTabIds = tabs.map((tabInfo) => tabInfo.id);
+  let targetWindow = tabs[0].windowId;
+  let moving = browser.tabs.move(mozTabIds, {
+    windowId: targetWindow,
+    index: 0,
+  });
   moving.then(onMoved, onError);
 }
 
-browser.browserAction.onClicked.addListener(function() {
-  var gettingMozTabs = browser.tabs.query({url:"*://*.mozilla.org/*"});
+browser.browserAction.onClicked.addListener(() => {
+  let gettingMozTabs = browser.tabs.query({ url: "*://*.mozilla.org/*" });
   gettingMozTabs.then(moveMoz, onError);
 });
 ```
@@ -132,11 +131,11 @@ browser.browserAction.onClicked.addListener(function() {
 
 {{Compat}}
 
-> **Note:** This API is based on Chromium's [`chrome.tabs`](https://developer.chrome.com/extensions/tabs#method-move) API. This documentation is derived from [`tabs.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/tabs.json) in the Chromium code.getZoom
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+> [!NOTE]
+> This API is based on Chromium's [`chrome.tabs`](https://developer.chrome.com/docs/extensions/reference/api/tabs#method-move) API. This documentation is derived from [`tabs.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/tabs.json) in the Chromium code.
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -163,4 +162,4 @@ browser.browserAction.onClicked.addListener(function() {
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

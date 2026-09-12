@@ -1,16 +1,10 @@
 ---
 title: proxy.RequestDetails
 slug: Mozilla/Add-ons/WebExtensions/API/proxy/RequestDetails
-tags:
-  - Add-ons
-  - Extensions
-  - Proxy
-  - RequestDetails
-  - Type
-  - WebExtensions
+page-type: webextension-api-type
 browser-compat: webextensions.api.proxy.RequestDetails
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Contains information about a web request. An instance of this object is passed into the {{WebExtAPIRef("proxy.onRequest")}} listener.
 
@@ -19,7 +13,9 @@ Contains information about a web request. An instance of this object is passed i
 Values of this type are objects. They contain the following properties:
 
 - `cookieStoreId`
-  - : `string`. The cookie store ID of the current context.
+  - : `string`. The cookie store ID of the current context. See [Work with contextual identities](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_contextual_identities) for more information.
+- `documentId` {{optional_inline}}
+  - : `string`. The UUID of the document making the request. See the [Work with documentId](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_documentId) article for more information.
 - `documentUrl`
   - : `string`. URL of the page into which the requested resource will be loaded.
 - `frameId`
@@ -27,21 +23,23 @@ Values of this type are objects. They contain the following properties:
 - `fromCache`
   - : `boolean`. Indicates if this response will be fetched from disk cache.
 - `incognito`
-  - : `boolean` `true` for private browsing requests.
+  - : `boolean`. `true` for private browsing requests.
 - `method`
   - : `string`. Standard HTTP method: for example, "GET" or "POST".
 - `originUrl`
-  - : `string`. URL of the resource that triggered the request. Note that this may not be the same as the URL of the page into which the requested resource will be loaded. For example, if a document triggers a load in a different window through the [target attribute of a link](/en-US/docs/Web/HTML/Element/a#attr-target), or a CSS document includes an image using the [`url()` functional notation](</en-US/docs/Web/CSS/url()#the_url()_functional_notation>), then this is the URL of the original document or of the CSS document, respectively.
+  - : `string`. URL of the resource that triggered the request. Note that this may not be the same as the URL of the page into which the requested resource will be loaded. For example, if a document triggers a load in a different window through the [target attribute of a link](/en-US/docs/Web/HTML/Reference/Elements/a#target), or a CSS document includes an image using the [`url()` functional notation](/en-US/docs/Web/CSS/Reference/Values/url_function), then this is the URL of the original document or of the CSS document, respectively.
+- `parentDocumentId` {{optional_inline}}
+  - : `string`. A UUID of the parent document that owns the frame. Not set if there is no parent. See the [Work with documentId](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_documentId) article for more information.
 - `parentFrameId`
   - : `integer`. ID of the frame that contains the frame that sent the request. Set to -1 if no parent frame exists.
 - `requestId`
   - : `string`. The ID of the request. Request IDs are unique within a browser session, so you can use an ID to identify different events associated with the same request.
-- `requestHeaders`{{optional_inline}}
+- `requestHeaders` {{optional_inline}}
   - : {{WebExtAPIRef('webRequest.HttpHeaders')}}. The HTTP request headers that will be sent with this request. Note that this is only included if the `"requestHeaders"` option was passed into `addListener()`.
 - `tabId`
   - : `integer`. ID of the tab in which the request takes place. Set to -1 if the request is not related to a tab.
 - `thirdParty`
-  - : `boolean`. Indicates whether the request and its content window hierarchy is third party.
+  - : `boolean`. Indicates whether the request and its content window hierarchy are third party.
 - `timeStamp`
   - : `number`. The time when this event fired, in [milliseconds since the epoch](https://en.wikipedia.org/wiki/Unix_time).
 - `type`
@@ -49,8 +47,8 @@ Values of this type are objects. They contain the following properties:
 - `url`
   - : `string`. Target of the request.
 
+{{WebExtExamples}}
+
 ## Browser compatibility
 
 {{Compat}}
-
-{{WebExtExamples}}

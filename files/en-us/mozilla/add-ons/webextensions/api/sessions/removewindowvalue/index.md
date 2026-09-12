@@ -1,18 +1,10 @@
 ---
 title: sessions.removeWindowValue()
 slug: Mozilla/Add-ons/WebExtensions/API/sessions/removeWindowValue
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Reference
-  - WebExtensions
-  - removeWindowValue
-  - sessions
+page-type: webextension-api-function
 browser-compat: webextensions.api.sessions.removeWindowValue
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Removes a value previously stored by a call to {{WebExtAPIRef("sessions.setWindowValue")}}.
 
@@ -20,8 +12,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var removing = browser.sessions.removeWindowValue(
+```js-nolint
+let removing = browser.sessions.removeWindowValue(
   windowId,    // integer
   key          // string
 )
@@ -37,10 +29,6 @@ var removing = browser.sessions.removeWindowValue(
 ### Return value
 
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be resolved no arguments if the item was successfully removed. If the call failed (for example, because the window ID could not be found) then the promise will be rejected with an error message.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -60,13 +48,13 @@ async function removeFromActiveWindow() {
 browser.menus.create({
   id: "add-my-item",
   title: "add item",
-  contexts: ["all"]
+  contexts: ["all"],
 });
 
 browser.menus.create({
   id: "remove-my-item",
   title: "remove item",
-  contexts: ["all"]
+  contexts: ["all"],
 });
 
 browser.menus.onClicked.addListener((info) => {
@@ -79,3 +67,7 @@ browser.menus.onClicked.addListener((info) => {
 ```
 
 {{WebExtExamples}}
+
+## Browser compatibility
+
+{{Compat}}

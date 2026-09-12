@@ -1,19 +1,10 @@
 ---
 title: tabs.ZoomSettingsScope
 slug: Mozilla/Add-ons/WebExtensions/API/tabs/ZoomSettingsScope
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Non-standard
-  - Reference
-  - Type
-  - WebExtensions
-  - ZoomSettingsScope
-  - tabs
+page-type: webextension-api-type
 browser-compat: webextensions.api.tabs.ZoomSettingsScope
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Defines whether zoom changes will persist for the page's origin, or only take effect in this tab. This defaults to `per-origin` when {{WebExtAPIRef("tabs.zoomSettingsMode")}} is "automatic", and is always `per-tab` otherwise.
 
@@ -22,25 +13,23 @@ Defines whether zoom changes will persist for the page's origin, or only take ef
 Values of this type are strings. Possible values are:
 
 - "per-origin"
-  - : All other tabs with the same origin as this tab will have the zoom changes applied to them. This scope is only available if {{WebExtAPIRef("tabs.zoomSettingsMode")}} is "automatic".
+  - : All other tabs with the same origin as this tab will have the zoom changes applied to them. This scope is only available if {{WebExtAPIRef("tabs.zoomSettingsMode")}} is "automatic".
 - "per-tab"
-
   - : Zoom changes only take effect in this tab, and zoom changes in other tabs will not affect the zooming of this tab. Also:
-
     - in Firefox the zoom level persists across page loads and navigation within the tab.
     - in Chrome-based browsers zoom changes are reset on navigation; navigating a tab will always load pages with their per-origin zoom factors.
+
+{{WebExtExamples}}
 
 ## Browser compatibility
 
 {{Compat}}
 
-{{WebExtExamples}}
+> [!NOTE]
+> This API is based on Chromium's [`chrome.tabs`](https://developer.chrome.com/docs/extensions/reference/api/tabs#type-ZoomSettingsScope) API. This documentation is derived from [`tabs.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/tabs.json) in the Chromium code.
 
-> **Note:** This API is based on Chromium's [`chrome.tabs`](https://developer.chrome.com/extensions/tabs#type-ZoomSettingsScope) API. This documentation is derived from [`tabs.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/tabs.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
-
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -67,4 +56,4 @@ Values of this type are strings. Possible values are:
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

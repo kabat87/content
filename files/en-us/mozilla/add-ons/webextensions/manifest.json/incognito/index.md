@@ -1,14 +1,10 @@
 ---
 title: incognito
 slug: Mozilla/Add-ons/WebExtensions/manifest.json/incognito
-tags:
-  - Add-ons
-  - WebExtensions
-  - incognito
-  - manifest.json
+page-type: webextension-manifest-key
 browser-compat: webextensions.manifest.incognito
+sidebar: addonsidebar
 ---
-{{AddonSidebar}}
 
 <table class="fullwidth-table standard-table">
   <tbody>
@@ -19,6 +15,10 @@ browser-compat: webextensions.manifest.incognito
     <tr>
       <th scope="row">Mandatory</th>
       <td>No</td>
+    </tr>
+    <tr>
+      <th scope="row">Manifest version</th>
+      <td>2 or higher</td>
     </tr>
     <tr>
       <th scope="row">Example</th>
@@ -33,9 +33,12 @@ browser-compat: webextensions.manifest.incognito
 
 Use the `incognito` key to control how the extension works with private browsing windows.
 
-This is a string which may take any of the following values:
+> [!NOTE]
+> By default, extensions do not run in private browsing windows. Whether an extension can access private browsing windows is under user control. For details, see [Extensions in Private Browsing](https://support.mozilla.org/en-US/kb/extensions-private-browsing). Your extension can check whether it can access private browsing windows using {{WebExtAPIRef("extension.isAllowedIncognitoAccess")}}.
 
-- "spanning" (the default): the extension will see events from private and non-private windows and tabs. Windows and tabs will get an `incognito` property in the [`Window`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/Window) or [`Tab`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab) that represents them. This property indicates whether or not the object is private:
+This is a string that can take any of these values:
+
+- "spanning" (the default): the extension sees events from private and non-private windows and tabs. Windows and tabs gets an `incognito` property in the [`Window`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/Window) or [`Tab`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab) that represents them. This property indicates whether or not the object is private:
 
   ```js
   browser.windows.getLastFocused().then((windowInfo) => {
@@ -43,10 +46,27 @@ This is a string which may take any of the following values:
   });
   ```
 
-- "split": the extension will be split between private and non-private windows. There are effectively two copies of the extension running: one sees only non-private windows, the other sees only private windows. Each copy has isolated access to Web APIs (so, for example, [`localStorage`](/en-US/docs/Web/API/Window/localStorage) is not shared). However, the WebExtension API [`storage.local`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/local) is shared. (**Note:** this setting is not supported by Firefox.)
+- "split": the extension is split between private and non-private windows. There are effectively two copies of the extension running: one sees only non-private windows, the other sees only private windows. Each copy has isolated access to Web APIs (so, for example, [`localStorage`](/en-US/docs/Web/API/Window/localStorage) is not shared). However, the WebExtension API [`storage.local`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/local) is shared.
+
+  > [!NOTE]
+  > Firefox doesn't support "split" mode. Extensions that request this option in Firefox are installed using "not_allowed". However, it's recommended that the `incognito` key is deleted from migrated extensions to preserve the default ("spanning") behavior.
+
 - "not_allowed": private tabs and windows are invisible to the extension.
 
-## Example
+## Privacy considerations
+
+If your extension uses `"spanning"` mode to access private and non-private windows, take care not to leak state from private to non-private browsing sessions. A common mistake is sending data from a content script running in a private browsing tab to an external server with a network request made from the background page. Because the background page shares cookies with the main browsing session, this can make private browsing activity linkable to the non-private session.
+
+To avoid this, use [`credentials: "omit"`](/en-US/docs/Web/API/RequestInit#credentials) and [`cache: "no-cache"`](/en-US/docs/Web/API/RequestInit#cache) in any `fetch()` calls from the background page that may involve data originating from private browsing windows:
+
+```js
+fetch(url, {
+  credentials: "omit",
+  cache: "no-cache",
+});
+```
+
+## Examples
 
 ```json
 "incognito": "spanning"

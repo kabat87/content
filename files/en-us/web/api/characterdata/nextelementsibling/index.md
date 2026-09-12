@@ -1,12 +1,11 @@
 ---
-title: CharacterData.nextElementSibling
+title: "CharacterData: nextElementSibling property"
+short-title: nextElementSibling
 slug: Web/API/CharacterData/nextElementSibling
-tags:
-  - Property
-  - Reference
-  - Read-only
+page-type: web-api-instance-property
 browser-compat: api.CharacterData.nextElementSibling
 ---
+
 {{APIRef("DOM")}}
 
 The read-only **`nextElementSibling`** property of the {{domxref("CharacterData")}} interface
@@ -15,7 +14,7 @@ children list, or `null` if the specified element is the last one in the list.
 
 ## Value
 
-A {{domxref("Element")}} object, or `null` if no sibling has been found.
+An {{domxref("Element")}} object, or `null` if no sibling has been found.
 
 ## Example
 
@@ -29,16 +28,16 @@ TEXT2
 
 ```js
 // Initially, set node to the Text node with `TEXT`
-let node = document.getElementById('div-01').previousSibling;
+let node = document.getElementById("div-01").previousSibling;
 
-let result = 'Next element siblings of TEXT:\n';
+let result = "Next element siblings of TEXT:\n";
 
 while (node) {
-  result += node.nodeName + '\n';
+  result += `${node.nodeName}\n`;
   node = node.nextElementSibling; // The first node is a CharacterData, the others Element objects
 }
 
-document.getElementsByTagName('pre')[0].textContent = result;
+document.querySelector("pre").textContent = result;
 ```
 
 {{EmbedLiveSample("Example", "100%", "230")}}

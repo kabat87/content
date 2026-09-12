@@ -1,38 +1,16 @@
 ---
 title: Constructor
 slug: Glossary/Constructor
-tags:
-  - CodingScripting
-  - Glossary
+page-type: glossary-definition
+sidebar: glossarysidebar
 ---
-A **constructor** belongs to a particular class {{glossary("object")}} that is instantiated. The constructor initializes this object and can provide access to its private information. The concept of a constructor can be applied to most {{glossary("OOP","object-oriented programming")}} languages. Essentially, a constructor in {{glossary("JavaScript")}} is usually declared at the instance of a {{glossary("class")}}.
 
-## Syntax
+A **constructor** is a specialized {{glossary("function")}} that generates {{glossary("object", "objects")}} with the same shape and behavior. The constructor initializes this object with some data specific to the object. The concept of a constructor can be applied to most {{glossary("OOP","object-oriented programming")}} languages.
 
-```js
-// This is a generic default constructor class Default
-function Default() {
-}
-
-// This is an overloaded constructor class Overloaded
-// with parameter arguments
-function Overloaded(arg1, arg2, ..., argN){
-}
-```
-
-To call the constructor of the class in JavaScript, use a `new` operator to assign a new {{glossary("object reference")}} to a {{glossary("variable")}}.
-
-```js
-function Default() {
-}
-
-// A new reference of a Default object assigned to a
-// local variable defaultReference
-var defaultReference = new Default();
-```
+In {{glossary("JavaScript")}}, a constructor is usually declared within a [class](/en-US/docs/Web/JavaScript/Reference/Classes), but it can also be declared as a [function](/en-US/docs/Web/JavaScript/Reference/Functions). In fact, any function that can be called with the [`new`](/en-US/docs/Web/JavaScript/Reference/Operators/new) operator is a constructor.
 
 ## See also
 
-- {{Interwiki("wikipedia", "Constructor_%28object-oriented_programming%29", "Constructor")}} on Wikipedia
-- [The constructor in object oriented programming for JavaScript](/en-US/docs/Learn/JavaScript/Objects#the_constructor) on MDN
-- [New operator in JavaScript](/en-US/docs/Web/JavaScript/Reference/Operators/new) on MDN
+- [Classes and constructors in JavaScript](/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Classes_in_JavaScript#classes_and_constructors)
+- [`new` operator in JavaScript](/en-US/docs/Web/JavaScript/Reference/Operators/new)
+- [Constructor](https://en.wikipedia.org/wiki/Constructor_%28object-oriented_programming%29) on Wikipedia

@@ -1,20 +1,10 @@
 ---
 title: windows.remove()
 slug: Mozilla/Add-ons/WebExtensions/API/windows/remove
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - Windows
-  - close
-  - remove
+page-type: webextension-api-function
 browser-compat: webextensions.api.windows.remove
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Closes a window and all the tabs inside it, given the window's ID.
 
@@ -22,8 +12,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var removing = browser.windows.remove(
+```js-nolint
+let removing = browser.windows.remove(
   windowId        // integer
 )
 ```
@@ -36,10 +26,6 @@ var removing = browser.windows.remove(
 ### Return value
 
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with no arguments when the window has been closed. If any error occurs, the promise will be rejected with an error message.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -55,34 +41,40 @@ function onError(error) {
 }
 
 browser.browserAction.onClicked.addListener((tab) => {
-
-  var removing = browser.windows.remove(tab.windowId);
+  let removing = browser.windows.remove(tab.windowId);
   removing.then(onRemoved, onError);
-
 });
 ```
 
-Close the current, e.g. popup, window when the user clicks a button on the page:
+Close the current, e.g., popup, window when the user clicks a button on the page:
 
 ```js
 // in a script loaded by the page in the window
-document.querySelector('#close').addEventListener(async ({ button, }) => { try {
-  if (button) return; // not a left click
-  const windowId = (await browser.windows.getCurrent()).id;
-  await browser.windows.remove(windowId);
-  // this point will never be reached, since the window is gone
-} catch (error) { console.error('Closing failed:', error); } });
+document.querySelector("#close").addEventListener(async ({ button }) => {
+  try {
+    if (button) return; // not a left click
+    const windowId = (await browser.windows.getCurrent()).id;
+    await browser.windows.remove(windowId);
+    // this point will never be reached, since the window is gone
+  } catch (error) {
+    console.error("Closing failed:", error);
+  }
+});
 ```
 
 In Firefox, the same could be achieved with the `.allowScriptsToClose` window creation property and `window.close()`.
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.windows`](https://developer.chrome.com/extensions/windows#method-remove) API. This documentation is derived from [`windows.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/windows.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.windows`](https://developer.chrome.com/docs/extensions/reference/api/windows#method-remove) API. This documentation is derived from [`windows.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/windows.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -109,4 +101,4 @@ In Firefox, the same could be achieved with the `.allowScriptsToClose` window cr
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

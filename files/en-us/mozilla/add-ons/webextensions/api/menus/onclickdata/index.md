@@ -1,19 +1,10 @@
 ---
 title: menus.OnClickData
 slug: Mozilla/Add-ons/WebExtensions/API/menus/OnClickData
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Non-standard
-  - OnClickData
-  - Reference
-  - Type
-  - WebExtensions
-  - contextMenus
+page-type: webextension-api-type
 browser-compat: webextensions.api.menus.OnClickData
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Information passed to the {{WebExtAPIRef("menus.onClicked")}} event listener when a menu item is clicked.
 
@@ -28,9 +19,9 @@ Values of this type are objects. They contain the following properties:
 - `checked` {{optional_inline}}
   - : `boolean`. A flag indicating whether a checkbox or radio item was checked after it was clicked.
 - `editable`
-  - : `boolean`. A flag indicating whether the element is editable: for example, if it is a [textarea](/en-US/docs/Web/HTML/Element/textarea).
+  - : `boolean`. A flag indicating whether the element is editable: for example, if it is a [textarea](/en-US/docs/Web/HTML/Reference/Elements/textarea).
 - `frameId` {{optional_inline}}
-  - : `integer`. The ID of the frame in which the item was clicked. The frame ID can be used in other APIs that accept frame IDs, such as {{WebExtAPIRef("tabs.sendMessage()")}}. If the item was clicked in the top level document, `frameId` is zero. If the item was clicked outside the page entirely (for example, in the `tools_menu` or `tab` context), then `frameId` is `undefined`.
+  - : `integer`. The ID of the frame in which the item was clicked. The frame ID can be used in other APIs that accept frame IDs, such as {{WebExtAPIRef("tabs.sendMessage()")}}. If the item was clicked in the top-level document, `frameId` is zero. If the item was clicked outside the page entirely (for example, in the `tools_menu` or `tab` context), then `frameId` is `undefined`.
 - `frameUrl` {{optional_inline}}
   - : `string`. The URL of the frame of the element where the context menu was clicked, if it was in a frame.
 - `linkText` {{optional_inline}}
@@ -51,22 +42,24 @@ Values of this type are objects. They contain the following properties:
   - : `string`. If some text was selected in the page, this contains the selected text.
 - `srcUrl` {{optional_inline}}
   - : `string`. If present, the `src` value for the media in the clicked element.
-- `targetElementId`{{optional_inline}}
-  - : `integer`. An identifier of the element, if any, over which the context menu was created. Use {{WebExtAPIRef("menus.getTargetElement()")}} in the content script to locate the element. Note that this is not the [id](/en-US/docs/Web/HTML/Global_attributes/id) attribute of the page element.
+- `targetElementId` {{optional_inline}}
+  - : `integer`. An identifier of the element, if any, over which the context menu was created. Use {{WebExtAPIRef("menus.getTargetElement()")}} in the content script to locate the element. Note that this is not the [id](/en-US/docs/Web/HTML/Reference/Global_attributes/id) attribute of the page element.
 - `viewType` {{optional_inline}}
   - : {{WebExtAPIRef("extension.ViewType", "ViewType")}}. The type of extension view.
 - `wasChecked` {{optional_inline}}
   - : `boolean`. A flag indicating whether a checkbox or radio item was checked before it was clicked.
 
+{{WebExtExamples}}
+
 ## Browser compatibility
 
 {{Compat}}
 
-{{WebExtExamples}}
+> [!NOTE]
+> This API is based on Chromium's [`chrome.contextMenus`](https://developer.chrome.com/docs/extensions/reference/api/contextMenus#type-OnClickData) API. This documentation is derived from [`context_menus.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/context_menus.json) in the Chromium code.
 
-> **Note:** This API is based on Chromium's [`chrome.contextMenus`](https://developer.chrome.com/extensions/contextMenus#type-OnClickData) API. This documentation is derived from [`context_menus.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/context_menus.json) in the Chromium code.
-
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -93,4 +86,4 @@ Values of this type are objects. They contain the following properties:
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

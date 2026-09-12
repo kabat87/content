@@ -1,12 +1,12 @@
 ---
 title: CIA
 slug: Glossary/CIA
-tags:
-  - Glossary
-  - Security
+page-type: glossary-definition
+sidebar: glossarysidebar
 ---
-CIA (Confidentiality, Integrity, Availability) (also called the CIA triad or AIC triad) is a model that guides an organization's policies for information security.
+
+**CIA (Confidentiality, Integrity, Availability)** (also called the CIA triad or AIC triad) is a model that guides an organization's policies for information security.
 
 ## See also
 
-- {{Interwiki("wikipedia", "Information_security#Key_concepts", "CIA")}} on Wikipedia
+- [CIA](https://en.wikipedia.org/wiki/Information_security#CIA_triad) on Wikipedia

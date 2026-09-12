@@ -1,19 +1,10 @@
 ---
 title: webNavigation.getAllFrames()
 slug: Mozilla/Add-ons/WebExtensions/API/webNavigation/getAllFrames
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - getAllFrames
-  - webNavigation
+page-type: webextension-api-function
 browser-compat: webextensions.api.webNavigation.getAllFrames
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Given a tab ID, retrieves information about all the frames it contains.
 
@@ -21,8 +12,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var gettingFrames = browser.webNavigation.getAllFrames(
+```js-nolint
+let gettingFrames = browser.webNavigation.getAllFrames(
   details                // object
 )
 ```
@@ -30,9 +21,7 @@ var gettingFrames = browser.webNavigation.getAllFrames(
 ### Parameters
 
 - `details`
-
   - : `object`. Information about the tab to retrieve all frames from.
-
     - `tabId`
       - : `integer`. The ID of the tab.
 
@@ -41,21 +30,25 @@ var gettingFrames = browser.webNavigation.getAllFrames(
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with an array of objects, each of which has the following properties:
 
 - `errorOccurred`
-  - : `boolean`. True if the last navigation in this frame was interrupted by an error, i.e. the {{WebExtAPIRef("webNavigation.onErrorOccurred", "onErrorOccurred")}} event fired.
-- `processId`
-  - : `integer`. The ID of the process running the renderer for this tab.
+  - : `boolean`. True if the last navigation in this frame was interrupted by an error, i.e., the {{WebExtAPIRef("webNavigation.onErrorOccurred", "onErrorOccurred")}} event fired.
+- `url`
+  - : `string`. The URL associated with this frame.
 - `frameId`
   - : `integer`. The ID of the frame. If this is the main frame, then `frameId` is zero.
+- `frameType`
+  - : `string`. The type of frame. Returns the values `"outermost_frame"`, `"fenced_frame"`, or `"sub_frame"` .
 - `parentFrameId`
   - : `integer`. ID of this frame's parent. This is -1 if there is no parent frame: that is, if this frame is the top-level browsing context in the tab.
-- `url`
-  - : `string`. The URL currently associated with this frame.
+- `documentId`
+  - : `string`. A UUID of the frame's document. See the [Work with documentId](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_documentId) article for more information.
+- `parentDocumentId`
+  - : `string`. A UUID of the parent document owning the frame. Not set if there is no parent. See the [Work with documentId](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_documentId) article for more information.
+- `documentLifecycle`
+  - : `string`. The lifecycle the document is in. Returns the values `"prerender"`, `"active"`, `"cached"`, or `"pending_deletion"`.
+- `processId` {{optional_inline}} {{deprecated_inline}}
+  - : `integer`. This value is not set in modern browsers. When it was set, it represented the ID of the process running the renderer for this tab.
 
 If the tab is discarded, the promise will instead resolve with a `null` value. If the specified tab could not be found, or some other error occurs, the promise will be rejected with an error message.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -63,39 +56,44 @@ This code logs the URLs of all frames in the active tab, when the user clicks a 
 
 ```js
 function logFrameInfo(framesInfo) {
-  for (frameInfo of framesInfo) {
+  for (const frameInfo of framesInfo) {
     console.log(frameInfo);
   }
 }
 
 function onError(error) {
-  console.log(`Error: ${error}`);
+  console.error(`Error: ${error}`);
 }
 
 function logAllFrames(tabs) {
-  var gettingAllFrames = browser.webNavigation.getAllFrames({tabId: tabs[0].id});
-  gettingAllFrames.then(logFrameInfo, onError);
+  browser.webNavigation
+    .getAllFrames({
+      tabId: tabs[0].id,
+    })
+    .then(logFrameInfo, onError);
 }
 
-browser.browserAction.onClicked.addListener(function() {
-
-  var querying = browser.tabs.query({
-    currentWindow: true,
-    active: true
-  });
-
-  querying.then(logAllFrames, onError);
-
+browser.browserAction.onClicked.addListener(() => {
+  browser.tabs
+    .query({
+      currentWindow: true,
+      active: true,
+    })
+    .then(logAllFrames, onError);
 });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.webNavigation`](https://developer.chrome.com/extensions/webNavigation#method-getAllFrames) API. This documentation is derived from [`web_navigation.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/web_navigation.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.webNavigation`](https://developer.chrome.com/docs/extensions/reference/api/webNavigation#method-getAllFrames) API. This documentation is derived from [`web_navigation.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/web_navigation.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -122,4 +120,4 @@ browser.browserAction.onClicked.addListener(function() {
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

@@ -1,22 +1,16 @@
 ---
 title: contentScripts.RegisteredContentScript.unregister()
-slug: >-
-  Mozilla/Add-ons/WebExtensions/API/contentScripts/RegisteredContentScript/unregister
-tags:
-  - API
-  - Extensions
-  - Reference
-  - RegisteredContentScript.unregister
-  - contentScripts
+slug: Mozilla/Add-ons/WebExtensions/API/contentScripts/RegisteredContentScript/unregister
+page-type: webextension-api-function
 browser-compat: webextensions.api.contentScripts.RegisteredContentScript.unregister
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Unregisters the content scripts represented by this `RegisteredContentScript` object.
 
 ## Syntax
 
-```js
+```js-nolint
 registered.unregister()
 ```
 
@@ -28,27 +22,23 @@ None.
 
 None.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 This code toggles a registered content script on a browser action click:
 
 ```js
-var registered = null;
+let registered = null;
 
 async function register() {
-
   registered = await browser.contentScripts.register({
     matches: ["*://*.org/*"],
-    js: [{
-      code: "document.body.innerHTML = '<h1>This page has been eaten<h1>'"
-    }],
-    runAt: "document_idle"
+    js: [
+      {
+        code: "document.body.innerHTML = '<h1>This page has been eaten<h1>'",
+      },
+    ],
+    runAt: "document_idle",
   });
-
 }
 
 function toggle() {
@@ -64,3 +54,7 @@ browser.browserAction.onClicked.addListener(toggle);
 ```
 
 {{WebExtExamples}}
+
+## Browser compatibility
+
+{{Compat}}

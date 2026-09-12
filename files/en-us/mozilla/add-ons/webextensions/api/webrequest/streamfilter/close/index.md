@@ -1,16 +1,10 @@
 ---
 title: webRequest.StreamFilter.close()
 slug: Mozilla/Add-ons/WebExtensions/API/webRequest/StreamFilter/close
-tags:
-  - Add-ons
-  - Extensions
-  - Method
-  - StreamFilter.close
-  - WebExtensions
-  - webRequest
+page-type: webextension-api-function
 browser-compat: webextensions.api.webRequest.StreamFilter.close
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Closes the request. After this is called, no further response data will be passed to the browser's rendering engine and no more filter events will be given to the extension.
 
@@ -22,7 +16,7 @@ You can't call this function until after the {{WebExtAPIRef("webRequest.StreamFi
 
 ## Syntax
 
-```js
+```js-nolint
 filter.close()
 ```
 
@@ -34,10 +28,6 @@ None.
 
 None.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 This example will replace the page content with "replacement text":
@@ -46,19 +36,23 @@ This example will replace the page content with "replacement text":
 function listener(details) {
   let filter = browser.webRequest.filterResponseData(details.requestId);
 
-  filter.onstart = event => {
+  filter.onstart = (event) => {
     console.log("started");
     let encoder = new TextEncoder();
     filter.write(encoder.encode("replacement content"));
     filter.close();
-  }
+  };
 }
 
 browser.webRequest.onBeforeRequest.addListener(
   listener,
-  {urls: ["https://example.org/"], types: ["main_frame"]},
-  ["blocking"]
+  { urls: ["https://example.org/"], types: ["main_frame"] },
+  ["blocking"],
 );
 ```
 
 {{WebExtExamples}}
+
+## Browser compatibility
+
+{{Compat}}

@@ -1,40 +1,41 @@
 ---
 title: The MDN Content Kitchensink
 slug: MDN/Kitchensink
-tags:
-  - Kitchensink
-  - MDN Meta
+page-type: guide
+browser-compat: html.elements.video
 ---
-{{MDNSidebar}}
 
-> **Warning:** Don't delete this page. It's used by [mdn/yari](https://github.com/mdn/yari) for its automation.
+> [!WARNING]
+> Don't delete this page. It's used by [mdn/yari](https://github.com/mdn/yari) for its automation.
 
 ## About this page
 
 The **kitchensink** is a page that _attempts_ to incorporate every possible content element and Yari macro.
 
-This page attempts to be the complete intersection of every other page. No in terms of the text but in terms of the styles and macros.
-Let's start with some notes...
+This page attempts to be the complete intersection of every other page. Not in terms of the text but in terms of the styles and macros.
+Let's start with some notes…
 
 Text that uses the `<kbd>` tag: <kbd>Shift</kbd>
 
-> **Note:** Here's a block indicator note.
+> [!NOTE]
+> Here's a block indicator note.
 
-> **Warning:** Here's a block indicator warning.
+> [!WARNING]
+> Here's a block indicator warning.
 
 ## Prev/Next buttons
 
 {{PreviousMenuNext("Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard", "Games/Techniques/Control_mechanisms/Other", "Games/Techniques/Control_mechanisms")}}
 
-### Another one...
+### Another one…
 
-{{PreviousNext("Games/Workflows/2D_Breakout_game_Phaser/Extra_lives", "Games/Workflows/2D_Breakout_game_Phaser/Buttons")}}
+{{PreviousNext("Games/Tutorials/2D_breakout_game_Phaser/Extra_lives", "Games/Tutorials/2D_breakout_game_Phaser/Buttons")}}
 
 ## Code snippets
 
 ### Plain text
 
-```
+```plain
   ___________________________
 < I'm an expert in my field. >
   ---------------------------
@@ -48,7 +49,7 @@ Text that uses the `<kbd>` tag: <kbd>Shift</kbd>
 ### HTML
 
 ```html
-<pre>
+<pre></pre>
 ```
 
 ### JavaScript
@@ -56,7 +57,7 @@ Text that uses the `<kbd>` tag: <kbd>Shift</kbd>
 ```js
 const f = () => {
   return Math.random();
-}
+};
 ```
 
 ### CSS
@@ -75,20 +76,24 @@ const f = () => {
 
 ### WebAssembly
 
-<pre class="brush: wasm">(func (param i32) (param f32) (local f64)
+```wat
+(func (param i32) (param f32) (local f64)
   local.get 0
   local.get 1
-  local.get 2)</pre>
+  local.get 2)
+```
 
 ### Rust
 
-<pre class="brush: rust">#[cfg(test)]
+```rust
+#[cfg(test)]
 mod tests {
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
     }
-}</pre>
+}
+```
 
 ### Python
 
@@ -101,53 +106,143 @@ class BookListView(generic.ListView):
     template_name = 'books/my_arbitrary_template_name_list.html'
 ```
 
-### Formal syntax
+## Interactive examples
 
-_The formal syntax must be taken from the spec and added to the [MDN data repository](https://github.com/mdn/data). It is an important tool to get precise syntax information for advanced users._
+{{InteractiveExample("HTML Demo: &lt;data&gt;", "tabbed-shorter")}}
 
-{{CSSSyntax("font-stretch")}}
+```html interactive-example
+<p>New Products:</p>
+<ul>
+  <li><data value="398">Mini Ketchup</data></li>
+  <li><data value="399">Jumbo Ketchup</data></li>
+  <li><data value="400">Mega Jumbo Ketchup</data></li>
+</ul>
+```
 
-## Interactive Examples
+```css interactive-example
+data:hover::after {
+  content: " (ID " attr(value) ")";
+  font-size: 0.7em;
+}
+```
 
-{{EmbedInteractiveExample("pages/tabbed/abbr.html", "tabbed-shorter")}}{{EmbedInteractiveExample("pages/css/order.html")}}{{EmbedInteractiveExample("pages/js/regexp-assertions.html", "taller")}}
+{{InteractiveExample("JavaScript Demo: Set.prototype[Symbol.iterator]()")}}
+
+```js interactive-example
+const set = new Set();
+
+set.add(42);
+set.add("forty two");
+
+const iterator = set[Symbol.iterator]();
+
+console.log(iterator.next().value);
+// Expected output: 42
+
+console.log(iterator.next().value);
+// Expected output: "forty two"
+```
+
+{{InteractiveExample("CSS Demo: filter")}}
+
+```css interactive-example-choice
+filter: url("/shared-assets/images/examples/shadow.svg#element-id");
+```
+
+```css interactive-example-choice
+filter: blur(5px);
+```
+
+```css interactive-example-choice
+filter: contrast(200%);
+```
+
+```css interactive-example-choice
+filter: grayscale(80%);
+```
+
+```css interactive-example-choice
+filter: hue-rotate(90deg);
+```
+
+```css interactive-example-choice
+filter: drop-shadow(16px 16px 20px red) invert(75%);
+```
+
+```html interactive-example
+<section id="default-example">
+  <div class="example-container">
+    <img
+      id="example-element"
+      src="/shared-assets/images/examples/firefox-logo.svg"
+      width="200" />
+  </div>
+</section>
+```
+
+```css interactive-example
+.example-container {
+  background-color: white;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#example-element {
+  flex: 1;
+  padding: 30px;
+}
+```
 
 ## Tables
 
-| Specification                                                                                | Status                           | Comment |
-| -------------------------------------------------------------------------------------------- | -------------------------------- | ------- |
-| {{SpecName("HTML WHATWG", "#link-type-dns-prefetch", "dns-prefetch")}} | {{Spec2("HTML WHATWG")}} |         |
+### Markdown table
+
+| Constant name                | Value  | Description                                                            |
+| ---------------------------- | ------ | ---------------------------------------------------------------------- |
+| `QUERY_COUNTER_BITS_EXT`     | 0x8864 | The number of bits used to hold the query result for the given target. |
+| `CURRENT_QUERY_EXT`          | 0x8865 | The currently active query.                                            |
+| `QUERY_RESULT_EXT`           | 0x8866 | The query result.                                                      |
+| `QUERY_RESULT_AVAILABLE_EXT` | 0x8867 | A Boolean indicating whether a query result is available.              |
+| `TIME_ELAPSED_EXT`           | 0x88BF | Elapsed time (in nanoseconds).                                         |
+| `TIMESTAMP_EXT`              | 0x8E28 | The current time.                                                      |
+| `GPU_DISJOINT_EXT`           | 0x8FBB | A Boolean indicating whether the GPU performed any disjoint operation. |
+
+### HTML table
 
 <table class="properties">
   <tbody>
     <tr>
       <th scope="row">
-        <a href="/en-US/docs/Web/Guide/HTML/Content_categories">Content categories</a>
+        <a href="/en-US/docs/Web/HTML/Guides/Content_categories">Content categories</a>
       </th>
       <td>
-        <a href="/en-US/docs/Web/Guide/HTML/Content_categories#flow_content">Flow content</a>,
-        <a href="/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content">phrasing content</a>, palpable content.
+        <a href="/en-US/docs/Web/HTML/Guides/Content_categories#flow_content">Flow content</a>,
+        <a href="/en-US/docs/Web/HTML/Guides/Content_categories#phrasing_content">phrasing content</a>, palpable content.
       </td>
     </tr>
     <tr>
       <th scope="row">Permitted content</th>
       <td>
-        <a href="/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content">Phrasing content</a>.
+        <a href="/en-US/docs/Web/HTML/Guides/Content_categories#phrasing_content">Phrasing content</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Tag omission</th>
-      <td>{{no_tag_omission}}</td>
+      <td>None, both the starting and ending tag are mandatory.</td>
     </tr>
     <tr>
       <th scope="row">Permitted parents</th>
       <td>
-        Any element that accepts <a href="/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content">phrasing content</a>.
+        Any element that accepts <a href="/en-US/docs/Web/HTML/Guides/Content_categories#phrasing_content">phrasing content</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Implicit ARIA role</th>
       <td>
-        <a href="https://www.w3.org/TR/html-aria/#dfn-no-corresponding-role">No corresponding role</a>
+        <a href="https://w3c.github.io/html-aria/#dfn-no-corresponding-role">No corresponding role</a>
       </td>
     </tr>
     <tr>
@@ -177,7 +272,7 @@ _The formal syntax must be taken from the spec and added to the [MDN data reposi
       <td><code>width</code></td>
       <td>A positive integer number, or the text <code>device-width</code></td>
       <td>
-        Defines the pixel width of the viewport that you want the web site to be
+        Defines the pixel width of the viewport that you want the website to be
         rendered at.
       </td>
     </tr>
@@ -195,7 +290,7 @@ _The formal syntax must be taken from the spec and added to the [MDN data reposi
       <td><code>auto</code>, <code>contain</code> or <code>cover</code></td>
       <td>
         <p>
-          The <code>auto</code> value doesn’t affect the initial layout viewport, and the whole web page is viewable.
+          The <code>auto</code> value doesn't affect the initial layout viewport, and the whole web page is viewable.
         </p>
         <p>
           The <code>contain</code> value means that the viewport is scaled to
@@ -203,17 +298,10 @@ _The formal syntax must be taken from the spec and added to the [MDN data reposi
         </p>
         <p>
           The <code>cover</code> value means that the viewport is scaled to fill the device display.
-          It is highly recommended to make use of the <a href="/en-US/docs/Web/CSS/env()">safe area inset</a> variables to
+          It is highly recommended to make use of the <a href="/en-US/docs/Web/CSS/Reference/Values/env">safe area inset</a> variables to
           ensure that important content doesn't end up outside the display.
         </p>
       </td>
-    </tr>
-    <tr>
-      <td>
-        {{SpecName('Fetch','#forbidden-response-header-name','forbidden-response-header-name')}}
-      </td>
-      <td>{{spec2('Fetch')}}</td>
-      <td></td>
     </tr>
   </tbody>
 </table>
@@ -230,12 +318,11 @@ When you request to access a {{Glossary("URL")}}, the gateway server can relay y
 
 - JavaScript {{jsxref("Array")}} on MDN
 
-Listening for mouse movement is even easier than listening for key presses: all we need is the listener for the {{event("mousemove")}} event.
-...just below the `keyup event`:
+Listening for mouse movement is even easier than listening for key presses: all we need is the listener for the {{domxref("Element/mousemove_event", "mousemove")}} event.
 
 ## Browser compatibility
 
-{{Compat("html.elements.video")}}
+{{Compat}}
 
 ## Axis-Aligned Bounding Box
 
@@ -244,82 +331,94 @@ The algorithm works by ensuring there is no gap between any of the 4 sides of th
 Any gap means a collision does not exist.
 
 ```js
-var rect1 = {x: 5, y: 5, width: 50, height: 50}
-var rect2 = {x: 20, y: 10, width: 10, height: 10}
+var rect1 = { x: 5, y: 5, width: 50, height: 50 };
+var rect2 = { x: 20, y: 10, width: 10, height: 10 };
 
-if (rect1.x < rect2.x + rect2.width &&
-   rect1.x + rect1.width > rect2.x &&
-   rect1.y < rect2.y + rect2.height &&
-   rect1.y + rect1.height > rect2.y) {
-    // collision detected!
+if (
+  rect1.x < rect2.x + rect2.width &&
+  rect1.x + rect1.width > rect2.x &&
+  rect1.y < rect2.y + rect2.height &&
+  rect1.y + rect1.height > rect2.y
+) {
+  // collision detected!
 }
 
 // filling in the values =>
 
-if (5 < 30 &&
-    55 > 20 &&
-    5 < 20 &&
-    55 > 10) {
-    // collision detected!
+if (5 < 30 && 55 > 20 && 5 < 20 && 55 > 10) {
+  // collision detected!
 }
 ```
 
-<div class="hidden"><h5 id="Rect_code">Rect code</h5><pre class="brush: html">&#x3C;div id="cr-stage">&#x3C;/div>
-&#x3C;p>Move the rectangle with arrow keys. Green means collision, blue means no collision.&#x3C;/p>
-&#x3C;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crafty/0.5.4/crafty-min.js">&#x3C;/script>
-</pre><pre class="brush: js">Crafty.init(200, 200);
+### Rect code
 
-var dim1 = {x: 5, y: 5, w: 50, h: 50}
-var dim2 = {x: 20, y: 10, w: 60, h: 40}
+```html
+<div id="cr-stage"></div>
+<p>
+  Move the rectangle with arrow keys. Green means collision, blue means no
+  collision.
+</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crafty/0.5.4/crafty-min.js"></script>
+```
+
+```js
+Crafty.init(200, 200);
+
+var dim1 = { x: 5, y: 5, w: 50, h: 50 };
+var dim2 = { x: 20, y: 10, w: 60, h: 40 };
 
 var rect1 = Crafty.e("2D, Canvas, Color").attr(dim1).color("red");
 
-var rect2 = Crafty.e("2D, Canvas, Color, Keyboard, Fourway").fourway(2).attr(dim2).color("blue");
+var rect2 = Crafty.e("2D, Canvas, Color, Keyboard, Fourway")
+  .fourway(2)
+  .attr(dim2)
+  .color("blue");
 
 rect2.bind("EnterFrame", function () {
-if (rect1.x &#x3C; rect2.x + rect2.w &#x26;&#x26;
-rect1.x + rect1.w > rect2.x &#x26;&#x26;
-rect1.y &#x3C; rect2.y + rect2.h &#x26;&#x26;
-rect1.h + rect1.y > rect2.y) {
-// collision detected!
-this.color("green");
-} else {
-// no collision
-this.color("blue");
-}
+  if (
+    rect1.x > rect2.x + rect2.w &&
+    rect1.x + rect1.w > rect2.x &&
+    rect1.y > rect2.y + rect2.h &&
+    rect1.h + rect1.y > rect2.y
+  ) {
+    // collision detected!
+    this.color("green");
+  } else {
+    // no collision
+    this.color("blue");
+  }
 });
+```
 
-</pre></div>
+{{EmbedLiveSample('Rect_code', '700', '300') }}
 
-{{ EmbedLiveSample('Rect_code', '700', '300', '', 'Games/Techniques/2D_collision_detection') }}
-
-{{APIRef("Bluetooth API")}}{{SeeCompatTable}}
+{{SeeCompatTable}}
 
 {{WebExtAPIRef("tabs.mutedInfo")}}
 
 ### Obsolete CSSOM interfaces {{deprecated_inline}}
 
-{{InheritanceDiagram}}
+{{InheritanceDiagram("WheelEvent")}}
 
 {{EmbedGHLiveSample("web-tech-games/index.html", '100%', 820)}}
 
 - [Accessibility resources at MDN](/en-US/docs/Web/Accessibility)
-- {{Interwiki("wikipedia", "Web accessibility")}} on Wikipedia
+- [Web accessibility](https://en.wikipedia.org/wiki/Web_accessibility) on Wikipedia
 
-The [`AvailableInWorkers`](https://github.com/mdn/yari/blob/main/kumascript/macros/AvailableInWorkers.ejs) macro inserts a localized note box indicating that a feature is available in a [Web worker](/en-US/docs/Web/API/Web_Workers_API) context.
+The [`AvailableInWorkers`](https://github.com/mdn/rari/blob/main/crates/rari-doc/src/templ/templs/banners.rs) macro inserts a localized note box indicating that a feature is available in a [Web worker](/en-US/docs/Web/API/Web_Workers_API) context.
 
 {{AvailableInWorkers}}
 
-- {{ARIARole("button")}}
-- {{ARIARole("checkbox")}}
-- {{ARIARole("menuitem")}}
-- {{ARIARole("menuitemcheckbox")}}
-- {{ARIARole("menuitemradio")}}
-- {{ARIARole("option")}}
-- {{ARIARole("radio")}}
-- {{ARIARole("switch")}}
-- {{ARIARole("tab")}}
-- {{ARIARole("treeitem")}}
+- [`button`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/button_role)
+- [`checkbox`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/checkbox_role)
+- [`menuitem`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menuitem_role)
+- [`menuitemcheckbox`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menuitemcheckbox_role)
+- [`menuitemradio`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/menuitemradio_role)
+- [`option`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/option_role)
+- [`radio`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/radio_role)
+- [`switch`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role)
+- [`tab`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role)
+- [`treeitem`](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/treeitem_role)
 
 <!---->
 
@@ -332,12 +431,10 @@ The [`AvailableInWorkers`](https://github.com/mdn/yari/blob/main/kumascript/macr
 <!---->
 
 - [MDN Web Docs Glossary](/en-US/docs/Glossary):
+  - {{Glossary("XMLHttpRequest", "XHR")}}
 
-  - {{Glossary("XHR_(XMLHttpRequest)","XMLHttpRequest")}}
-
-- {{interwiki("wikipedia", "AJAX")}} on Wikipedia
-- [Ajax](/en-US/docs/Web/Guide/AJAX)
-- [Ajax - Getting started](/en-US/docs/Web/Guide/AJAX/Getting_Started)
+- [AJAX](https://en.wikipedia.org/wiki/AJAX) on Wikipedia
+- [Learn: Making network requests with JavaScript](/en-US/docs/Learn_web_development/Core/Scripting/Network_requests)
 - {{DOMxRef("XMLHttpRequest")}}
 - {{DOMxRef("Fetch API")}}
 - [Using Fetch API](/en-US/docs/Web/API/Fetch_API/Using_Fetch)
@@ -347,8 +444,8 @@ The [`AvailableInWorkers`](https://github.com/mdn/yari/blob/main/kumascript/macr
 
 - {{SVGElement("feGaussianBlur")}}
 - {{SVGAttr("keySplines")}} SVG attribute
-- {{htmlattrxref("dir")}}
-- {{htmlattrxref("lang")}}
+- [dir](/en-US/docs/Web/HTML/Reference/Global_attributes#dir)
+- [lang](/en-US/docs/Web/HTML/Reference/Global_attributes#lang)
 - {{cssxref(":dir")}}
 - {{cssxref("direction")}}
 
@@ -358,7 +455,4 @@ The [`AvailableInWorkers`](https://github.com/mdn/yari/blob/main/kumascript/macr
   - : Information about a particular alarm.
 
 {{Non-standard_Header}}
-{{Deprecated_Header}}
 [![Iceberg pic](iceberg.jpg)](iceberg.jpg)
-
-`geckoRelease:` {{ geckoRelease("1.9.3") }}

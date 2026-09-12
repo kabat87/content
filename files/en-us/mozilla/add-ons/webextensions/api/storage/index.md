@@ -1,25 +1,17 @@
 ---
 title: storage
 slug: Mozilla/Add-ons/WebExtensions/API/storage
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Interface
-  - Non-standard
-  - Reference
-  - Storage
-  - WebExtensions
+page-type: webextension-api
 browser-compat: webextensions.api.storage
+sidebar: addonsidebar
 ---
-{{AddonSidebar}}
 
 Enables extensions to store and retrieve data, and listen for changes to stored items.
 
 The storage system is based on the [Web Storage API](/en-US/docs/Web/API/Web_Storage_API), with a few differences. Among other differences, these include:
 
 - It's asynchronous.
-- Values are scoped to the extension, not to a specific domain (i.e. the same set of key/value pairs are available to all scripts in the background context and content scripts).
+- Values are scoped to the extension, not to a specific domain (i.e., the same set of key/value pairs are available to all scripts in the background context and content scripts).
 - The values stored can be any JSON-ifiable value, not just [`String`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/String). Among other things, this includes: [`Array`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) and [`Object`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), but only when their contents can be represented as JSON, which does not include DOM nodes. You don't need to convert your values to JSON `Strings` prior to storing them, but they are represented as JSON internally, thus the requirement that they be JSON-ifiable.
 - Multiple key/value pairs can be set or retrieved in the same API call.
 
@@ -27,11 +19,12 @@ To use this API you need to include the `"storage"` [permission](/en-US/docs/Moz
 
 Each extension has its own storage area, which can be split into different types of storage.
 
-Although this API is similar to {{domxref("Window.localStorage")}} it is recommended that you don't use `Window.localStorage` in the extension code to store extension-related data. Firefox will clear data stored by extensions using the localStorage API in various scenarios where users clear their browsing history and data for privacy reasons, while data saved using the [`storage.local`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/local) API will be correctly persisted in these scenarios.
+Although this API is similar to {{domxref("Window.localStorage")}} it is recommended that you don't use `Window.localStorage` in the extension code to store extension-related data. Firefox will clear data stored by extensions using the localStorage API in various scenarios where users clear their browsing history and data for privacy reasons, while data saved using the [`storage.local`](/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/local) API will be correctly persisted in these scenarios.
 
-You can examine the stored data under the Extension Storage item in the [Storage Inspector](/en-US/docs/Tools/Storage_Inspector) tab of the [developer toolbox](https://extensionworkshop.com/documentation/develop/debugging/), accessible from `about:debugging`.
+You can examine the stored data under the Extension Storage item in the [Storage Inspector](https://firefox-source-docs.mozilla.org/devtools-user/storage_inspector/index.html) tab of the [developer toolbox](https://extensionworkshop.com/documentation/develop/debugging/), accessible from `about:debugging`.
 
-> **Note:** The storage area is not encrypted and shouldn't be used for storing confidential user information.
+> [!NOTE]
+> The storage area is not encrypted and shouldn't be used for storing confidential user information.
 
 ## Types
 
@@ -42,31 +35,33 @@ You can examine the stored data under the Extension Storage item in the [Storage
 
 ## Properties
 
-`storage` has three properties, which represent the different types of available storage area.
+`storage` has four properties, which represent the different types of available storage area.
 
-- {{WebExtAPIRef("storage.sync")}}
-  - : Represents the `sync` storage area. Items in `sync` storage are synced by the browser, and are available across all instances of that browser that the user is logged into, across different devices.
 - {{WebExtAPIRef("storage.local")}}
   - : Represents the `local` storage area. Items in `local` storage are local to the machine the extension was installed on.
 - {{WebExtAPIRef("storage.managed")}}
   - : Represents the `managed` storage area. Items in `managed` storage are set by the domain administrator and are read-only for the extension. Trying to modify this namespace results in an error.
+- {{WebExtAPIRef("storage.session")}}
+  - : Represents the `session` storage area. Items in `session` storage are stored in memory and are not persisted to disk.
+- {{WebExtAPIRef("storage.sync")}}
+  - : Represents the `sync` storage area. Items in `sync` storage are synced by the browser, and are available across all instances of that browser that the user is logged into, across different devices.
 
 ## Events
 
 - {{WebExtAPIRef("storage.onChanged")}}
-  - : Fired when one or more items change in a storage area.
+  - : Fired when one or more items change in any of the storage areas.
+
+{{WebExtExamples("h2")}}
 
 ## Browser compatibility
 
 {{Compat}}
 
-{{WebExtExamples("h2")}}
+> [!NOTE]
+> This API is based on Chromium's [`chrome.storage`](https://developer.chrome.com/docs/extensions/reference/api/storage) API. This documentation is derived from [`storage.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/storage.json) in the Chromium code.
 
-> **Note:** This API is based on Chromium's [`chrome.storage`](https://developer.chrome.com/extensions/storage) API. This documentation is derived from [`storage.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/storage.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
-
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -93,4 +88,4 @@ You can examine the stored data under the Extension Storage item in the [Storage
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

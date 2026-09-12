@@ -1,19 +1,10 @@
 ---
 title: bookmarks.search()
 slug: Mozilla/Add-ons/WebExtensions/API/bookmarks/search
-tags:
-  - API
-  - Add-ons
-  - Bookmarks
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - Search
-  - WebExtensions
+page-type: webextension-api-function
 browser-compat: webextensions.api.bookmarks.search
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 The **`bookmarks.search()`** function searches for bookmark tree nodes matching the given query.
 
@@ -23,8 +14,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var searching = browser.bookmarks.search(
+```js-nolint
+let searching = browser.bookmarks.search(
   query                  // string or object
 )
 ```
@@ -32,23 +23,20 @@ var searching = browser.bookmarks.search(
 ### Parameters
 
 - `query`
-
-  - : A {{jsxref("string")}} or {{jsxref("object")}} describing the query to perform.
+  - : A {{jsxref("String")}} or {{jsxref("Object")}} describing the query to perform.
 
     If `query` is a **string**, it consists of zero or more space-delimited search terms. Each search term matches if it is a substring in the bookmark's URL or title. Matching is case-insensitive. For a bookmark to match the query, all the query's search terms must be matched.
 
-    If `query` is an **object**, it consists of zero or more of 3 properties: `query`, `title`, and `url`, which are described below. For a bookmark to match the query, all the properties' terms must be matched.
-
+    If `query` is an **object**, it consists of zero or more of 3 properties: `query`, `title`, and `url`, which are described below. For a bookmark to match the query, all the properties' terms must be matched.
     - `query` {{optional_inline}}
-      - : A {{jsxref("string")}} specifying one or more terms to match against; the format is identical to the string form of the `query` parameter. If this isn't a string, an exception is thrown.
+      - : A {{jsxref("String")}} specifying one or more terms to match against; the format is identical to the string form of the `query` parameter. If this isn't a string, an exception is thrown.
     - `url` {{optional_inline}}
-
-      - : A {{jsxref("string")}} that must exactly match the bookmark's URL. Matching is case-insensitive, and trailing slashes are ignored.
+      - : A {{jsxref("String")}} that must exactly match the bookmark's URL. Matching is case-insensitive, and trailing slashes are ignored.
 
         If you pass an invalid URL, the function will throw an exception.
 
     - `title` {{optional_inline}}
-      - : A {{jsxref("string")}} that must exactly match the bookmark tree node's title. Matching is case-sensitive.
+      - : A {{jsxref("String")}} that must exactly match the bookmark tree node's title. Matching is case-sensitive.
 
 ### Return value
 
@@ -62,7 +50,7 @@ This example logs the IDs of all bookmarks:
 
 ```js
 function onFulfilled(bookmarkItems) {
-  for (item of bookmarkItems) {
+  for (const item of bookmarkItems) {
     console.log(item.id);
   }
 }
@@ -71,9 +59,7 @@ function onRejected(error) {
   console.log(`An error: ${error}`);
 }
 
-var searching = browser.bookmarks.search({});
-
-searching.then(onFulfilled, onRejected);
+browser.bookmarks.search({}).then(onFulfilled, onRejected);
 ```
 
 This example looks to see if the currently active tab is bookmarked:
@@ -92,8 +78,7 @@ function onRejected(error) {
 }
 
 function checkActiveTab(tab) {
-  var searching = browser.bookmarks.search({url: tab.url});
-  searching.then(onFulfilled, onRejected);
+  browser.bookmarks.search({ url: tab.url }).then(onFulfilled, onRejected);
 }
 
 browser.browserAction.onClicked.addListener(checkActiveTab);
@@ -105,11 +90,11 @@ browser.browserAction.onClicked.addListener(checkActiveTab);
 
 {{Compat}}
 
-> **Note:** This API is based on Chromium's [`chrome.bookmarks`](https://developer.chrome.com/extensions/bookmarks#method-search) API. This documentation is derived from [`bookmarks.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/bookmarks.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+> [!NOTE]
+> This API is based on Chromium's [`chrome.bookmarks`](https://developer.chrome.com/docs/extensions/reference/api/bookmarks#method-search) API. This documentation is derived from [`bookmarks.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/bookmarks.json) in the Chromium code.
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -136,4 +121,4 @@ browser.browserAction.onClicked.addListener(checkActiveTab);
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

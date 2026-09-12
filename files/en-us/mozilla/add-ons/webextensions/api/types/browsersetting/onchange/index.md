@@ -1,27 +1,18 @@
 ---
 title: BrowserSetting.onChange
 slug: Mozilla/Add-ons/WebExtensions/API/types/BrowserSetting/onChange
-tags:
-  - API
-  - Add-ons
-  - BrowserSetting
-  - Event
-  - Extensions
-  - Privacy
-  - Reference
-  - WebExtensions
-  - onchange
+page-type: webextension-api-event
 browser-compat: webextensions.api.types.BrowserSetting.onChange
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 The `BrowserSetting.onChange` event is fired when the setting is changed.
 
-On Firefox, it doesn’t fire if the change has been made through `about:config`.
+On Firefox, it doesn't fire if the change has been made through `about:config`.
 
 ## Syntax
 
-```js
+```js-nolint
 BrowserSetting.onChange.addListener(listener)
 BrowserSetting.onChange.removeListener(listener)
 BrowserSetting.onChange.hasListener(listener)
@@ -40,14 +31,10 @@ Events have three functions:
 
 ### Parameters
 
-- `callback`
-
-  - : A callback function that will be called when this event occurs. The function will be passed the following arguments:
-
+- `listener`
+  - : The function called when this event occurs. The function is passed these arguments:
     - `details`
-
       - : An `object` containing details of the change that occurred. Its properties are as follows:
-
         - `value`
           - : The new value of the setting. The type of this property is determined by the particular setting.
         - `levelOfControl`
@@ -75,19 +62,19 @@ Events have three functions:
               </tbody>
             </table>
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.types`](https://developer.chrome.com/extensions/types) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.types`](https://developer.chrome.com/docs/extensions/reference/api/types) API.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -114,4 +101,4 @@ Events have three functions:
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

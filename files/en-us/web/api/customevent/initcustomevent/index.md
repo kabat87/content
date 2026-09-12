@@ -1,13 +1,14 @@
 ---
-title: CustomEvent.initCustomEvent()
+title: "CustomEvent: initCustomEvent() method"
+short-title: initCustomEvent()
 slug: Web/API/CustomEvent/initCustomEvent
-tags:
-  - Deprecated
-  - Method
-  - Reference
+page-type: web-api-instance-method
+status:
+  - deprecated
 browser-compat: api.CustomEvent.initCustomEvent
 ---
-{{APIRef("DOM")}}{{Deprecated_header}}
+
+{{APIRef("DOM")}}{{AvailableInWorkers}}
 
 The **`CustomEvent.initCustomEvent()`** method initializes a {{domxref("CustomEvent")}} object.
 If the event has already been dispatched, this method does nothing.
@@ -16,15 +17,16 @@ Events initialized in this way must have been created with the {{domxref("Docume
 This method must be called to set the event before it is dispatched using {{ domxref("EventTarget.dispatchEvent()") }}.
 Once dispatched, it doesn't do anything anymore.
 
-> **Note:** **Do not use this method anymore, as it is deprecated.**
+> [!NOTE]
+> **Do not use this method anymore, as it is deprecated.**
 >
 > Rather than using the feature, instead use specific event constructors, like {{domxref("CustomEvent.CustomEvent", "CustomEvent()")}}.
-> The page on [Creating and triggering events](/en-US/docs/Web/Events/Creating_and_triggering_events) gives more information about the way to use those.
+> The section on [Creating and dispatching events](/en-US/docs/Web/API/Document_Object_Model/Events#creating_and_dispatching_events) gives more information about the way to use those.
 
 ## Syntax
 
-```js
-event.initCustomEvent(type, canBubble, cancelable, detail);
+```js-nolint
+initCustomEvent(type, canBubble, cancelable, detail)
 ```
 
 ### Parameters
@@ -32,12 +34,16 @@ event.initCustomEvent(type, canBubble, cancelable, detail);
 - `type`
   - : A string containing the name of the event.
 - `canBubble`
-  - : Is a boolean value indicating whether the event bubbles up through the DOM
+  - : A boolean value indicating whether the event bubbles up through the DOM
     or not.
 - `cancelable`
-  - : Is a boolean value indicating whether the event is cancelable.
+  - : A boolean value indicating whether the event is cancelable.
 - `detail`
   - : Any data that will be available to the handler through the {{domxref("CustomEvent.detail")}} property.
+
+### Return value
+
+None (`undefined`).
 
 ## Specifications
 

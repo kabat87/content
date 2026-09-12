@@ -1,27 +1,28 @@
 ---
-title: WebAssembly memory
+title: WebAssembly memory instructions
 slug: WebAssembly/Reference/Memory
-tags:
-  - WebAssembly
-  - wasm
-  - Landing page
-  - Reference
-  - Memory
+page-type: landing-page
+sidebar: webassemblysidebar
 ---
-{{WebAssemblySidebar}}
 
-WebAssembly bitwise instructions.
+WebAssembly memory instructions.
 
-> **Note:** These bitwise instructions are only available for the integer types and not for the floating point types.
+- [`copy`](/en-US/docs/WebAssembly/Reference/Memory/copy)
+  - : Copies data from one [`memory`](/en-US/docs/WebAssembly/Reference/Definitions/memory) region to another.
+- [`fill`](/en-US/docs/WebAssembly/Reference/Memory/fill)
+  - : Sets all values in a region to a specific byte.
+- [`grow`](/en-US/docs/WebAssembly/Reference/Memory/grow)
+  - : Increases the size of the memory instance.
+- [`init`](/en-US/docs/WebAssembly/Reference/Memory/init)
+  - : Copies the bytes from a passive [`data`](/en-US/docs/WebAssembly/Reference/Definitions/data) definition into a [`memory`](/en-US/docs/WebAssembly/Reference/Definitions/memory).
+- [`load`](/en-US/docs/WebAssembly/Reference/Memory/load)
+  - : Loads a number from memory.
+- [`size`](/en-US/docs/WebAssembly/Reference/Memory/size)
+  - : Gets the size of the memory instance.
+- [`store`](/en-US/docs/WebAssembly/Reference/Memory/store)
+  - : Stores a number in memory.
 
-- [`Grow`](/en-US/docs/WebAssembly/Reference/Memory/Grow)
-  - : Increase the size of the memory instance.
+## See also
 
-- [`Size`](/en-US/docs/WebAssembly/Reference/Memory/Size)
-  - : Get the size of the memory instance.
-
-- [`Load`](/en-US/docs/WebAssembly/Reference/Memory/Load)
-  - : Load a number from memory.
-
-- [`Store`](/en-US/docs/WebAssembly/Reference/Memory/Store)
-  - : Store a number in memory.
+- [`memory`](/en-US/docs/WebAssembly/Reference/Definitions/memory) definition
+- [`WebAssembly.Memory`](/en-US/docs/WebAssembly/Reference/JavaScript_interface/Memory) JavaScript API

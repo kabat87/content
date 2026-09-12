@@ -1,31 +1,43 @@
 ---
-title: WebAssembly instructions
+title: WebAssembly reference
+short-title: Reference
 slug: WebAssembly/Reference
-tags:
-  - WebAssembly
-  - wasm
-  - Landing page
-  - Reference
+page-type: listing-page
+sidebar: webassemblysidebar
 ---
-{{WebAssemblySidebar}}
 
-WebAssembly instructions.
+This page lists references for [WebAssembly](/en-US/docs/WebAssembly).
 
-- [`Numeric Instructions`](/en-US/docs/WebAssembly/Reference/Numeric)
-  - : Arithmetic, comparison, bitwise, etc.
+## JavaScript reference
 
-- [`Vector/SIMD Instructions`](/en-US/docs/WebAssembly/Reference/Vector)
-  - : Single instruction multiple data.
+- [WebAssembly](/en-US/docs/WebAssembly/Reference/JavaScript_interface)
+  - : The WebAssembly JavaScript object acts as the namespace for all WebAssembly-related functionality.
 
-- [`Reference Instructions`](/en-US/docs/WebAssembly/Reference/Reference)
+## Value Types
 
-- [`Parametric Instructions`](/en-US/docs/WebAssembly/Reference/Parametric)
+- [WebAssembly value types](/en-US/docs/WebAssembly/Reference/Value_types)
+  - : The different WebAssembly value types.
 
-- [`Variable Instructions`](/en-US/docs/WebAssembly/Reference/Variables)
-  - : Setting and getting local and global variables.
+## Definitions
 
-- [`Table Instructions`](/en-US/docs/WebAssembly/Reference/Table)
+- [WebAssembly definitions](/en-US/docs/WebAssembly/Reference/Definitions)
+  - : The top-level definitions available in Wasm for defining module features such as tables, types, memories, functions, etc.
 
-- [`Memory Instructions`](/en-US/docs/WebAssembly/Reference/Memory)
+## Instructions
 
-- [`Control flow Instructions`](/en-US/docs/WebAssembly/Reference/Control_flow)
+- [WebAssembly control flow instructions](/en-US/docs/WebAssembly/Reference/Control_flow)
+  - : WebAssembly control flow instructions.
+- [WebAssembly memory instructions](/en-US/docs/WebAssembly/Reference/Memory)
+  - : WebAssembly memory instructions.
+- [WebAssembly numeric instructions](/en-US/docs/WebAssembly/Reference/Numeric)
+  - : WebAssembly numeric instructions.
+- [WebAssembly SIMD instructions](/en-US/docs/WebAssembly/Reference/SIMD)
+  - : The SIMD (single instruction, multiple data) instructions available in Wasm.
+- [WebAssembly table instructions](/en-US/docs/WebAssembly/Reference/Table)
+  - : The instructions available in Wasm to manipulate tables.
+- [WebAssembly variable instructions](/en-US/docs/WebAssembly/Reference/Variables)
+  - : WebAssembly variable instructions.
+
+## See also
+
+- [WebAssembly](/en-US/docs/WebAssembly)

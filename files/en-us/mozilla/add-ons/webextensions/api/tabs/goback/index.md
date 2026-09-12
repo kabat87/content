@@ -1,18 +1,10 @@
 ---
 title: tabs.goBack()
 slug: Mozilla/Add-ons/WebExtensions/API/tabs/goBack
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - goBack
+page-type: webextension-api-function
 browser-compat: webextensions.api.tabs.goBack
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Navigate to the previous page in tab's history, if available.
 
@@ -20,8 +12,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var withGoingBack = browser.tabs.goBack(
+```js-nolint
+let withGoingBack = browser.tabs.goBack(
   tabId,                  // optional integer
   callback                  // optional function
 )
@@ -29,18 +21,14 @@ var withGoingBack = browser.tabs.goBack(
 
 ### Parameters
 
-- `tabId`{{optional_inline}}
+- `tabId` {{optional_inline}}
   - : `integer`. The ID of the tab to navigate. Defaults to the active tab of the current window.
-- `callback`{{optional_inline}}
+- `callback` {{optional_inline}}
   - : `function`. When the page navigation finishes, this function is called without parameters.
 
 ### Return value
 
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that is fulfilled when the page navigation finishes.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -55,17 +43,21 @@ function onError(error) {
   console.log(`Error: ${error}`);
 }
 
-var goingBack = browser.tabs.goBack();
+let goingBack = browser.tabs.goBack();
 goingBack.then(onGoBack, onError);
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.tabs`](https://developer.chrome.com/extensions/tabs#method-getZoomSettings) API. This documentation is derived from [`tabs.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/tabs.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.tabs`](https://developer.chrome.com/docs/extensions/reference/api/tabs#method-getZoomSettings) API. This documentation is derived from [`tabs.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/tabs.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -92,4 +84,4 @@ goingBack.then(onGoBack, onError);
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

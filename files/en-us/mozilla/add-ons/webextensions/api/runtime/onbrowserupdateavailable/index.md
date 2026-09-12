@@ -1,26 +1,21 @@
 ---
 title: runtime.onBrowserUpdateAvailable
 slug: Mozilla/Add-ons/WebExtensions/API/runtime/onBrowserUpdateAvailable
-tags:
-  - API
-  - Add-ons
-  - Deprecated
-  - Event
-  - Extensions
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - onBrowserUpdateAvailable
-  - runtime
+page-type: webextension-api-event
+status:
+  - deprecated
 browser-compat: webextensions.api.runtime.onBrowserUpdateAvailable
+sidebar: addonsidebar
 ---
-{{AddonSidebar}}{{Deprecated_header}}
+
+> [!WARNING]
+> This event has been deprecated. Use {{WebExtAPIRef("runtime.onRestartRequired")}} instead.
 
 Fired when an update for the browser is available, but it isn't installed immediately because a browser restart is required.
 
 ## Syntax
 
-```js
+```js-nolint
 browser.runtime.onBrowserUpdateAvailable.addListener(listener)
 browser.runtime.onBrowserUpdateAvailable.removeListener(listener)
 browser.runtime.onBrowserUpdateAvailable.hasListener(listener)
@@ -28,7 +23,7 @@ browser.runtime.onBrowserUpdateAvailable.hasListener(listener)
 
 Events have three functions:
 
-- `addListener(callback)`
+- `addListener(listener)`
   - : Adds a listener to this event.
 - `removeListener(listener)`
   - : Stop listening to this event. The `listener` argument is the listener to remove.
@@ -40,11 +35,7 @@ Events have three functions:
 ### Parameters
 
 - `function`
-  - : A callback function that will be called when this event occurs.
-
-## Browser compatibility
-
-{{Compat}}
+  - : The function called when this event occurs.
 
 ## Examples
 
@@ -55,16 +46,22 @@ function handleBrowserUpdateAvailable() {
   // handle event
 }
 
-browser.runtime.onBrowserUpdateAvailable.addListener(handleBrowserUpdateAvailable);
+browser.runtime.onBrowserUpdateAvailable.addListener(
+  handleBrowserUpdateAvailable,
+);
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.runtime`](https://developer.chrome.com/extensions/runtime#event-onBrowserUpdateAvailable) API. This documentation is derived from [`runtime.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/runtime.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.runtime`](https://developer.chrome.com/docs/extensions/reference/api/runtime#event-onBrowserUpdateAvailable) API. This documentation is derived from [`runtime.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/runtime.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -91,4 +88,4 @@ browser.runtime.onBrowserUpdateAvailable.addListener(handleBrowserUpdateAvailabl
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

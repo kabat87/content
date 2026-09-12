@@ -1,18 +1,10 @@
 ---
 title: pkcs11.getModuleSlots()
 slug: Mozilla/Add-ons/WebExtensions/API/pkcs11/getModuleSlots
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Reference
-  - WebExtensions
-  - getModuleSlots
-  - pkcs11
+page-type: webextension-api-function
 browser-compat: webextensions.api.pkcs11.getModuleSlots
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Enumerate a module's slots. This function returns an array containing one entry for each slot. Each entry contains the slot's name and, if the slot contains a token, information about the token.
 
@@ -22,8 +14,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var getting = browser.pkcs11.getModuleSlots(
+```js-nolint
+let getting = browser.pkcs11.getModuleSlots(
   name              // string
 )
 ```
@@ -57,10 +49,6 @@ A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that 
 
 If the module could not be found or some other error occurs, the promise will be rejected with an error message.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 Installs a module, then lists its slots and list the tokens they contain:
@@ -71,19 +59,21 @@ function onInstalled() {
 }
 
 function onGotSlots(slots) {
-  for (slot of slots) {
+  for (const slot of slots) {
     console.log(`Slot: ${slot.name}`);
     if (slot.token) {
       console.log(`Contains token: ${slot.token.name}`);
     } else {
-      console.log('Is empty');
+      console.log("Is empty");
     }
   }
 }
 
-browser.pkcs11.installModule("my_module")
-.then(onInstalled)
-.then(onGotSlots);
+browser.pkcs11.installModule("my_module").then(onInstalled).then(onGotSlots);
 ```
 
 {{WebExtExamples}}
+
+## Browser compatibility
+
+{{Compat}}

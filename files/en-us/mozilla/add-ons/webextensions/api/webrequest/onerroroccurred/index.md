@@ -1,19 +1,10 @@
 ---
 title: webRequest.onErrorOccurred
 slug: Mozilla/Add-ons/WebExtensions/API/webRequest/onErrorOccurred
-tags:
-  - API
-  - Add-ons
-  - Event
-  - Extensions
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - onErrorOccurred
-  - webRequest
+page-type: webextension-api-event
 browser-compat: webextensions.api.webRequest.onErrorOccurred
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Fired when a request could not be processed due to an error: for example, a lack of Internet connectivity.
 
@@ -25,7 +16,7 @@ This event is informational only.
 
 ## Syntax
 
-```js
+```js-nolint
 browser.webRequest.onErrorOccurred.addListener(
   listener,             // function
   filter                //  object
@@ -36,7 +27,7 @@ browser.webRequest.onErrorOccurred.hasListener(listener)
 
 Events have three functions:
 
-- `addListener(callback, filter)`
+- `addListener(listener, filter)`
   - : Adds a listener to this event.
 - `removeListener(listener)`
   - : Stop listening to this event. The `listener` argument is the listener to remove.
@@ -47,28 +38,32 @@ Events have three functions:
 
 ### Parameters
 
-- `callback`
-
-  - : A function that will be called when this event occurs. The function will be passed the following arguments:
-
+- `listener`
+  - : The function called when this event occurs. The function is passed this argument:
     - `details`
-      - : [`object`](#details). Details about the request. See [`details`](#details) below.
+      - : `object`. Details about the request. See the [details](#details) section for more information.
 
 - `filter`
-  - : {{WebExtAPIRef('webRequest.RequestFilter')}}. A filter that restricts the events that will be sent to this listener.
+  - : {{WebExtAPIRef('webRequest.RequestFilter')}}. A filter that restricts the events that is sent to this listener.
 
 ## Additional objects
 
 ### details
 
+- `documentId` {{optional_inline}}
+  - : `string`. The UUID of the document making the request. See the [Work with documentId](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_documentId) article for more information.
+- `documentLifecycle`
+  - : `string`. The lifecycle the document is in. Returns the values `"prerender"`, `"active"`, `"cached"`, or `"pending_deletion"`.
 - `cookieStoreId`
-  - : `string`. If the request is from a tab open in a contextual identity, the cookie store ID of the contextual identity.
+  - : `string`. If the request is from a tab open in a contextual identity, the cookie store ID of the contextual identity. See [Work with contextual identities](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_contextual_identities) for more information.
 - `documentUrl`
   - : `string`. URL of the document in which the resource will be loaded. For example, if the web page at "https\://example.com" contains an image or an iframe, then the `documentUrl` for the image or iframe will be "https\://example.com". For a top-level document, `documentUrl` is undefined.
 - `error`
   - : `string`. The error description. This string is an internal error string, may vary from one browser to another, and is not guaranteed to stay the same between releases.
 - `frameId`
   - : `integer`. Zero if the request happens in the main frame; a positive value is the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (`type` is `main_frame` or `sub_frame`), `frameId` indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab.
+- `frameType`
+  - : `string`. The type of frame the request occurred in. Returns the values `"outermost_frame"`, `"fenced_frame"`, or `"sub_frame"`.
 - `fromCache`
   - : `boolean`. Indicates if this response was fetched from disk cache.
 - `incognito`
@@ -78,25 +73,22 @@ Events have three functions:
 - `method`
   - : `string`. Standard HTTP method: for example, "GET" or "POST".
 - `originUrl`
-
   - : `string`. URL of the resource which triggered the request. For example, if "https\://example.com" contains a link, and the user clicks the link, then the `originUrl` for the resulting request is "https\://example.com".
 
     The `originUrl` is often but not always the same as the `documentUrl`. For example, if a page contains an iframe, and the iframe contains a link that loads a new document into the iframe, then the `documentUrl` for the resulting request will be the iframe's parent document, but the `originUrl` will be the URL of the document in the iframe that contained the link.
 
+- `parentDocumentId` {{optional_inline}}
+  - : `string`. A UUID of the parent document owning the frame. Not set if there is no parent. See the [Work with documentId](/en-US/docs/Mozilla/Add-ons/WebExtensions/Work_with_documentId) article for more information.
 - `parentFrameId`
   - : `integer`. ID of the frame that contains the frame which sent the request. Set to -1 if no parent frame exists.
 - `proxyInfo`
-
   - : `object`. This property is present only if the request is being proxied. It contains the following properties:
-
     - `host`
       - : `string`. The hostname of the proxy server.
     - `port`
       - : `integer`. The port number of the proxy server.
     - `type`
-
       - : `string`. The type of proxy server. One of:
-
         - "http": HTTP proxy (or SSL CONNECT for HTTPS)
         - "https": HTTP proxying over TLS connection to proxy
         - "socks": SOCKS v5 proxy
@@ -124,31 +116,40 @@ Events have three functions:
 - `url`
   - : `string`. Target of the request.
 - `urlClassification`
-
-  - : `object`. The type of tracking associated with the request, if with the request has been classified by [Firefox Tracking Protection](https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop). This is an object with the following properties:
-
+  - : `object`. The type of tracking associated with the request, if the request is classified by [Firefox Tracking Protection](https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop). This is an object with these properties:
     - `firstParty`
-      - : `array` of `strings`. Classification flags for the request's first party.
+      - : `array` of `string`. Classification flags for the request's first party.
     - `thirdParty`
-      - : `array` of `strings`. Classification flags for the request or its window hierarchy's third parties.
+      - : `array` of `string`. Classification flags for the request or its window hierarchy's third parties.
 
     The classification flags include:
-
-    - `fingerprinting` and `fingerprinting_content`: indicates the request is involved in fingerprinting. `fingerprinting_content` indicates the request is loaded from an origin that has been found to fingerprint but is not considered to participate in tracking, such as a payment provider.
+    - `fingerprinting` and `fingerprinting_content`: indicates the request is involved in fingerprinting ("an origin found to fingerprint").
+      - `fingerprinting` indicates the domain is in the fingerprinting and tracking category. Examples of this type of domain include advertisers who want to associate a profile with the visiting user.
+      - `fingerprinting_content` indicates the domain is in the fingerprinting category but not the tracking category. Examples of this type of domain include payment providers who use fingerprinting techniques to identify the visiting user for anti-fraud purposes.
     - `cryptomining` and `cryptomining_content`: similar to the fingerprinting category but for cryptomining resources.
-    - `tracking`, `tracking_ad`, `tracking_analytics`, `tracking_social`,  and `tracking_content`: indicates the request is involved in tracking. `tracking` is any generic tracking request, the `ad`, `analytics`, `social`, and `content` suffixes identify the type of tracker.
-    - `any_basic_tracking`: a meta flag that combines any tracking and fingerprinting flags, excluding `tracking_content` and `fingerprinting_content`.
-    - `any_strict_tracking`: a meta flag that combines any tracking and fingerprinting flags, including `tracking_content` and `fingerprinting_content`.
-    - `any_social_tracking`: a meta flag that combines any social tracking flags.
+    - `tracking`, `tracking_ad`, `tracking_analytics`, `tracking_social`, and `tracking_content`: indicates the request is involved in tracking. `tracking` is any generic tracking request, the `ad`, `analytics`, `social`, and `content` suffixes identify the type of tracker.
+    - `emailtracking` and `emailtracking_content`: indicates the request is involved in tracking emails.
+    - `any_basic_tracking`: a meta flag that combines tracking and fingerprinting flags, excluding `tracking_content` and `fingerprinting_content`.
+    - `any_strict_tracking`: a meta flag that combines all tracking and fingerprinting flags.
+    - `any_social_tracking`: a meta flag that combines all social tracking flags.
 
-## Browser compatibility
+    You can find more information on tracker types on the [disconnect.me](https://disconnect.me/trackerprotection#categories_of_trackers) website. The `content` suffix indicates trackers that track and serve content. Blocking them protects users but can lead to sites breaking or elements not being displayed.
 
-{{Compat}}
+    **Note** If Firefox Tracking Protection blocks the request an empty object is returned and `error` returns one of these codes:
+    - `NS_ERROR_MALWARE_URI` indicating a malware URI.
+    - `NS_ERROR_PHISHING_URI` indicating a phishing URI.
+    - `NS_ERROR_TRACKING_URI` indicating a tracking URI.
+    - `NS_ERROR_UNWANTED_URI` indicating an unwanted URI.
+    - `NS_ERROR_BLOCKED_URI` indicating a blocked URI.
+    - `NS_ERROR_HARMFUL_URI` indicating a harmful URI.
+    - `NS_ERROR_FINGERPRINTING` indicating a fingerprinting URI.
+    - `NS_ERROR_CRYPTOMINING_URI` indicating a cryptomining URI.
+    - `NS_ERROR_SOCIALTRACKING_URI` indicating a social tracking URI.
 
 ## Examples
 
 ```js
-var target = "<all_urls>";
+let target = "<all_urls>";
 
 /*
 e.g., with no network:
@@ -161,19 +162,20 @@ function logError(responseDetails) {
   console.log(responseDetails.error);
 }
 
-browser.webRequest.onErrorOccurred.addListener(
-  logError,
-  {urls: [target]}
-);
+browser.webRequest.onErrorOccurred.addListener(logError, { urls: [target] });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.webRequest`](https://developer.chrome.com/extensions/webRequest#event-onErrorOccurred) API. This documentation is derived from [`web_request.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/web_request.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.webRequest`](https://developer.chrome.com/docs/extensions/reference/api/webRequest#event-onErrorOccurred) API. This documentation is derived from [`web_request.json`](https://chromium.googlesource.com/chromium/src/+/master/extensions/common/api/web_request.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -200,4 +202,4 @@ browser.webRequest.onErrorOccurred.addListener(
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

@@ -1,28 +1,17 @@
 ---
 title: permissions.contains()
 slug: Mozilla/Add-ons/WebExtensions/API/permissions/contains
-tags:
-  - API
-  - Add-ons
-  - Contains
-  - Method
-  - Permissions
-  - Reference
-  - WebExtensions
+page-type: webextension-api-function
 browser-compat: webextensions.api.permissions.contains
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
-Check whether the extension has the permissions listed in the given {{WebExtAPIRef("permissions.Permissions")}} object.
-
-The `Permissions` argument may contain either an origins property, which is an array of [host permissions](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions#host_permissions), or a `permissions` property, which is an array of [API permissions](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions#api_permissions), or both.
-
-This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). The promise is fulfilled with true only if all the extension currently has all the given permissions. For host permissions, if the extension's permissions [pattern-match](/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns) the permissions listed in `origins`, then they are considered to match.
+Checks whether the extension has specific permissions.
 
 ## Syntax
 
-```js
-var getContains = browser.permissions.contains(
+```js-nolint
+let getContains = browser.permissions.contains(
   permissions                // Permissions object
 )
 ```
@@ -34,56 +23,59 @@ var getContains = browser.permissions.contains(
 
 ### Return value
 
-A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with `true` if the extension already has all the permissions listed in the `permissions` argument, or `false` otherwise.
-
-## Browser compatibility
-
-{{Compat}}
+A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) fulfilled with `true` if the extension has all the permissions listed in the `permissions` argument, or `false` otherwise. For host permissions, if the extension's permissions [pattern-match](/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns) the permissions listed in `origins`, then they are considered to match.
 
 ## Examples
 
 ```js
 // Extension permissions are:
-// "webRequest", "tabs", "*://*.mozilla.org/*"
+// "webRequest", "tabs", "*://*.mozilla.org/*", and "healthInfo" in "data_collection"
 
-var testPermissions1 = {
+let testPermissions1 = {
   origins: ["*://mozilla.org/"],
-  permissions: ["tabs"]
+  permissions: ["tabs"],
+  data_collection: ["healthInfo"],
 };
 
-browser.permissions.contains(testPermissions1).then((result) => {
-  console.log(result);    // true
-});
+const testResult1 = await browser.permissions.contains(testPermissions1);
+console.log(testResult1); // true
 
-var testPermissions2 = {
-  origins: ["*://mozilla.org/"],
-  permissions: ["tabs", "alarms"]
+let testPermissions2 = {
+  origins: ["*://mozilla.org/"],
+  permissions: ["tabs", "alarms"],
 };
 
-browser.permissions.contains(testPermissions2).then((result) => {
-  console.log(result);   // false, "alarms" doesn't match
-});
+const testResult2 = await browser.permissions.contains(testPermissions2);
+console.log(testResult2); // false, "alarms" doesn't match
 
-var testPermissions3 = {
-  origins: ["https://developer.mozilla.org/"],
-  permissions: ["tabs", "webRequest"]
+let testPermissions3 = {
+  origins: ["https://developer.mozilla.org/"],
+  permissions: ["tabs", "webRequest"],
 };
 
-browser.permissions.contains(testPermissions3).then((result) => {
-  console.log(result);   // true: "https://developer.mozilla.org/"
-});                      // matches: "*://*.mozilla.org/*"
+const testResult3 = await browser.permissions.contains(testPermissions3);
+console.log(testResult3); // true: "https://developer.mozilla.org/", matches: "*://*.mozilla.org/*"
 
-var testPermissions4 = {
-  origins: ["https://example.org/"]
+let testPermissions4 = {
+  origins: ["https://example.org/"],
 };
 
-browser.permissions.contains(testPermissions4).then((result) => {
-  console.log(result);   // false, "https://example.org/"
-});                      // does not match
+const testResult4 = await browser.permissions.contains(testPermissions4);
+console.log(testResult4); // false: "https://example.org/", `origins` doesn't match
+
+let testPermissions5 = {
+  data_collection: ["searchTerms"],
+};
+
+const testResult5 = await browser.permissions.contains(testPermissions4);
+console.log(testResult5); // false: "searchTerms" doesn't match data type in `data_collection`
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.permissions`](https://developer.chrome.com/extensions/permissions) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
+
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.permissions`](https://developer.chrome.com/docs/extensions/reference/api/permissions) API.

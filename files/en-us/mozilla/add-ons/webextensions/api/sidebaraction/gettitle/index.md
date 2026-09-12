@@ -1,18 +1,10 @@
 ---
 title: sidebarAction.getTitle()
 slug: Mozilla/Add-ons/WebExtensions/API/sidebarAction/getTitle
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Reference
-  - WebExtensions
-  - getTitle
-  - sidebarAction
+page-type: webextension-api-function
 browser-compat: webextensions.api.sidebarAction.getTitle
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Gets the sidebar's title.
 
@@ -22,8 +14,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var gettingTitle = browser.sidebarAction.getTitle(
+```js-nolint
+let gettingTitle = browser.sidebarAction.getTitle(
   details               // object
 )
 ```
@@ -31,10 +23,8 @@ var gettingTitle = browser.sidebarAction.getTitle(
 ### Parameters
 
 - `details`
-
   - : `object`. An object with the following properties:
-
-    - `tabId`{{optional_inline}}
+    - `tabId` {{optional_inline}}
       - : `integer`. Get the title for the sidebar specific to the given tab.
     - `windowId` {{optional_inline}}
       - : `integer`. Get the title for the sidebar specific to the given window.
@@ -48,36 +38,36 @@ var gettingTitle = browser.sidebarAction.getTitle(
 
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that will be fulfilled with a string containing the sidebar's title.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 This code switches the title between "this" and "that" each time the user clicks the browser action
 
 ```js
 function toggleTitle(title) {
-  if (title == "this") {
-    browser.sidebarAction.setTitle({title: "that"});
+  if (title === "this") {
+    browser.sidebarAction.setTitle({ title: "that" });
   } else {
-    browser.sidebarAction.setTitle({title: "this"});
+    browser.sidebarAction.setTitle({ title: "this" });
   }
 }
 
 browser.browserAction.onClicked.addListener(() => {
-  var gettingTitle = browser.sidebarAction.getTitle({});
+  let gettingTitle = browser.sidebarAction.getTitle({});
   gettingTitle.then(toggleTitle);
 });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Opera's [`chrome.sidebarAction`](https://dev.opera.com/extensions/sidebar-action-api/) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Opera's [`chrome.sidebarAction`](https://help.opera.com/en/extensions/sidebar-action-api/) API.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -104,4 +94,4 @@ browser.browserAction.onClicked.addListener(() => {
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

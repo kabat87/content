@@ -1,13 +1,10 @@
 ---
 title: version_name
 slug: Mozilla/Add-ons/WebExtensions/manifest.json/version_name
-tags:
-  - Add-ons
-  - Extensions
-  - WebExtensions
+page-type: webextension-manifest-key
 browser-compat: webextensions.manifest.version_name
+sidebar: addonsidebar
 ---
-{{AddonSidebar}}
 
 <table class="fullwidth-table standard-table">
   <tbody>
@@ -20,16 +17,24 @@ browser-compat: webextensions.manifest.version_name
       <td>No</td>
     </tr>
     <tr>
+      <th scope="row">Manifest version</th>
+      <td>2 or higher</td>
+    </tr>
+    <tr>
       <th scope="row">Example</th>
       <td><pre class="brush: json">"version_name": "0.1 beta"</pre></td>
     </tr>
   </tbody>
 </table>
 
-In addition to the [version](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version) field, which is used for update purposes, [version_name](https://developer.chrome.com/extensions/manifest/version) can be set to a descriptive version string and will be used for display purposes if present.
+In addition to the [`version`](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version) key, which is used for update purposes, `version_name` can be set to a descriptive version string and is used as the displayed version value.
 
-If no **version_name** is present, the **version** field will be used for display purposes as well.
+If `version_name` isn't present, the `version` property is used as the displayed version.
 
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- The [`version`](/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version) manifest key

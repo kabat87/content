@@ -1,19 +1,10 @@
 ---
 title: history.deleteAll()
 slug: Mozilla/Add-ons/WebExtensions/API/history/deleteAll
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - History
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - deleteAll
+page-type: webextension-api-function
 browser-compat: webextensions.api.history.deleteAll
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Deletes all visits from the browser's history.
 
@@ -23,8 +14,8 @@ This is an asynchronous function that returns a [`Promise`](/en-US/docs/Web/Java
 
 ## Syntax
 
-```js
-var deletingAll = browser.history.deleteAll()
+```js-nolint
+let deletingAll = browser.history.deleteAll()
 ```
 
 ### Parameters
@@ -34,10 +25,6 @@ None.
 ### Return value
 
 A [`Promise`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) will be fulfilled with no parameters when all history has been deleted.
-
-## Browser compatibility
-
-{{Compat}}
 
 ## Examples
 
@@ -49,7 +36,7 @@ function onDeleteAll() {
 }
 
 function deleteAllHistory() {
-  var deletingAll = browser.history.deleteAll();
+  let deletingAll = browser.history.deleteAll();
   deletingAll.then(onDeleteAll);
 }
 
@@ -58,11 +45,15 @@ deleteAllHistory();
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.history`](https://developer.chrome.com/extensions/history#method-deleteAll) API. This documentation is derived from [`history.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/history.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.history`](https://developer.chrome.com/docs/extensions/reference/api/history#method-deleteAll) API. This documentation is derived from [`history.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/history.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -89,4 +80,4 @@ deleteAllHistory();
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

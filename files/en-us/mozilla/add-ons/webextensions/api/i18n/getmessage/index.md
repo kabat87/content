@@ -1,19 +1,10 @@
 ---
 title: i18n.getMessage()
 slug: Mozilla/Add-ons/WebExtensions/API/i18n/getMessage
-tags:
-  - API
-  - Add-ons
-  - Extensions
-  - Method
-  - Non-standard
-  - Reference
-  - WebExtensions
-  - getMessage
-  - i18n
+page-type: webextension-api-function
 browser-compat: webextensions.api.i18n.getMessage
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Gets the localized string for the specified message.
 
@@ -21,7 +12,7 @@ See the [Internationalization](/en-US/docs/Mozilla/Add-ons/WebExtensions/Interna
 
 ## Syntax
 
-```js
+```js-nolint
 browser.i18n.getMessage(
   messageName,  // string
   substitutions // optional any
@@ -31,14 +22,11 @@ browser.i18n.getMessage(
 ### Parameters
 
 - `messageName`
-
   - : `string`. The name of the message, as specified in the messages.json file. If the message can't be found in messages.json:
-
     - Firefox returns "" and logs an error.
     - Chrome returns "" and does not log an error.
 
-- `substitutions`{{optional_inline}}
-
+- `substitutions` {{optional_inline}}
   - : `string` or `array` of `string`. A single substitution string, or an array of substitution strings.
 
     In Chrome, if you supply more than 9 substitution strings, `getMessage()` will return `undefined`.
@@ -47,16 +35,12 @@ browser.i18n.getMessage(
 
 `string`. Message localized for current locale.
 
-## Browser compatibility
-
-{{Compat}}
-
 ## Examples
 
 Get the localized string for `"messageContent"`, with `target.url` substituted:
 
 ```js
-var message = browser.i18n.getMessage("messageContent", target.url);
+let message = browser.i18n.getMessage("messageContent", target.url);
 console.log(message);
 ```
 
@@ -68,9 +52,9 @@ This would work with a \_locales/en/messages.json file containing:
     "message": "You clicked $URL$.",
     "description": "Tells the user which link they clicked.",
     "placeholders": {
-      "url" : {
-        "content" : "$1",
-        "example" : "https://developer.mozilla.org"
+      "url": {
+        "content": "$1",
+        "example": "https://developer.mozilla.org"
       }
     }
   }
@@ -79,17 +63,21 @@ This would work with a \_locales/en/messages.json file containing:
 
 If `target.url` is "https\://developer.mozilla.org", then the value of message, in the "en" locale, would be:
 
-```
+```plain
 "You clicked https://developer.mozilla.org."
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.i18n`](https://developer.chrome.com/extensions/i18n#method-getMessage) API. This documentation is derived from [`i18n.json`](https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/api/i18n.json) in the Chromium code.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
 
-<div class="hidden"><pre>// Copyright 2015 The Chromium Authors. All rights reserved.
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.i18n`](https://developer.chrome.com/docs/extensions/reference/api/i18n#method-getMessage) API. This documentation is derived from [`i18n.json`](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/extensions/common/api/i18n.json) in the Chromium code.
+
+<!--
+// Copyright 2015 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -116,4 +104,4 @@ If `target.url` is "https\://developer.mozilla.org", then the value of message, 
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+-->

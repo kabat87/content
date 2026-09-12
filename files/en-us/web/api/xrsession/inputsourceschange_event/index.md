@@ -1,17 +1,14 @@
 ---
-title: 'XRSession: inputsourceschange event'
+title: "XRSession: inputsourceschange event"
+short-title: inputsourceschange
 slug: Web/API/XRSession/inputsourceschange_event
-tags:
-  - API
-  - Event
-  - Reference
-  - WebXR
-  - XR
-  - XRInputSources
-  - XRSession
+page-type: web-api-event
+status:
+  - experimental
 browser-compat: api.XRSession.inputsourceschange_event
 ---
-{{APIRef("WebXR Device API")}}
+
+{{APIRef("WebXR Device API")}}{{SeeCompatTable}}{{SecureContext_Header}}
 
 The **`inputsourceschange`** event is sent to an {{domxref("XRSession")}} when the set of available WebXR input devices changes.
 
@@ -19,10 +16,10 @@ The **`inputsourceschange`** event is sent to an {{domxref("XRSession")}} when t
 
 Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
 
-```js
-addEventListener('inputsourceschange', event => { })
+```js-nolint
+addEventListener("inputsourceschange", (event) => { })
 
-oninputsourceschange = event => { }
+oninputsourceschange = (event) => { }
 ```
 
 ## Event type
@@ -30,17 +27,6 @@ oninputsourceschange = event => { }
 An {{domxref("XRInputSourcesChangeEvent")}}. Inherits from {{domxref("Event")}}.
 
 {{InheritanceDiagram("XRInputSourcesChangeEvent")}}
-
-## Event properties
-
-_In addition to the properties listed below, properties from the parent interface, {{domxref("Event")}}, are available._
-
-- {{domxref("XRInputSourcesChangeEvent.added", "added")}} {{ReadOnlyInline}}
-  - : An array of zero or more {{domxref("XRInputSource")}} objects, each representing an input device which has been recently connected or enabled.
-- {{domxref("XRInputSourcesChangeEvent.removed", "removed")}} {{ReadOnlyInline}}
-  - : An array of zero or more {{domxref("XRInputSource")}} objects representing the input devices recently disconnected or disabled.
-- {{domxref("XRInputSourcesChangeEvent.session", "session")}} {{ReadOnlyInline}}
-  - : The {{domxref("XRSession")}} to which this input source change event is being directed.
 
 ## Description
 
@@ -60,8 +46,8 @@ The following example shows how to set up an event handler which uses `inputsour
 xrSession.addEventListener("inputsourceschange", onInputSourcesChange);
 
 function onInputSourcesChange(event) {
-  for (let input of event.added) {
-    if (input.targetRayMode == "tracked-pointer") {
+  for (const input of event.added) {
+    if (input.targetRayMode === "tracked-pointer") {
       loadControllerMesh(input);
     }
   }

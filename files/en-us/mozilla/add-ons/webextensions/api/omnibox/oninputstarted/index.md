@@ -1,18 +1,10 @@
 ---
 title: omnibox.onInputStarted
 slug: Mozilla/Add-ons/WebExtensions/API/omnibox/onInputStarted
-tags:
-  - API
-  - Add-ons
-  - Event
-  - Extensions
-  - Reference
-  - WebExtensions
-  - omnibox
-  - onInputStarted
+page-type: webextension-api-event
 browser-compat: webextensions.api.omnibox.onInputStarted
+sidebar: addonsidebar
 ---
-{{AddonSidebar()}}
 
 Fired when the user starts interacting with your extension by entering its keyword in the address bar and then pressing the space key.
 
@@ -20,7 +12,7 @@ This will be sent before any {{WebExtAPIRef("omnibox.onInputChanged")}} events.
 
 ## Syntax
 
-```js
+```js-nolint
 browser.omnibox.onInputStarted.addListener(listener)
 browser.omnibox.onInputStarted.removeListener(listener)
 browser.omnibox.onInputStarted.hasListener(listener)
@@ -28,7 +20,7 @@ browser.omnibox.onInputStarted.hasListener(listener)
 
 Events have three functions:
 
-- `addListener(callback)`
+- `addListener(listener)`
   - : Adds a listener to this event.
 - `removeListener(listener)`
   - : Stop listening to this event. The `listener` argument is the listener to remove.
@@ -39,23 +31,22 @@ Events have three functions:
 
 ### Parameters
 
-- `callback`
-  - : Function that will be called when this event occurs. The function will be passed no arguments.
-
-## Browser compatibility
-
-{{Compat}}
+- `listener`
+  - : The function called when this event occurs. The function is passed no arguments.
 
 ## Examples
 
 ```js
 browser.omnibox.onInputStarted.addListener(() => {
-  console.log("User has started interacting with me.")
+  console.log("User has started interacting with me.");
 });
 ```
 
 {{WebExtExamples}}
 
-> **Note:** This API is based on Chromium's [`chrome.omnibox`](https://developer.chrome.com/extensions/omnibox) API.
->
-> Microsoft Edge compatibility data is supplied by Microsoft Corporation and is included here under the Creative Commons Attribution 3.0 United States License.
+## Browser compatibility
+
+{{Compat}}
+
+> [!NOTE]
+> This API is based on Chromium's [`chrome.omnibox`](https://developer.chrome.com/docs/extensions/reference/api/omnibox) API.
